@@ -80,7 +80,10 @@ static class AdvancedDialogsProof
         {
             Capture(ocr, Path.Combine(output, "ocr-light.png"), 600, 520);
             Find<Button>(ocr, "Recognize text in this document locally").RaiseEvent(new RoutedEventArgs(Button.ClickEvent));
-            await WaitAsync(() => !ocr.IsVisible, 60);
+            // A cold companion runtime (first launch on a fresh machine) can take minutes; a refusal leaves the dialog open with its reason.
+            var ocrStatus = (TextBlock)typeof(OcrWindow).GetField("status", System.Reflection.BindingFlags.NonPublic | System.Reflection.BindingFlags.Instance)!.GetValue(ocr)!;
+            try { await WaitAsync(() => !ocr.IsVisible, 300); }
+            catch (TimeoutException) { throw new TimeoutException("OCR dialog did not finish. Status: " + ocrStatus.Text); }
         }) == true, "The real OCR Apply button commits a searchable layer");
         Check(scanSession.IsDirty && (await scanSession.ExtractAsync(0)).GetProperty("Text").GetString()!.Contains("Invoice number 12345"),
             "OCR dialog result is searchable through PDFium");
