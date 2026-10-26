@@ -6,7 +6,7 @@ Guiding policy: verified operations keep the strict path; other cases run as a *
 
 | # | Area | Main items | Status (Oct 26) |
 |---|---|---|---|
-| 1 | Repo basics | AGPL-3.0 license, `.gitignore`, first commit, CI, README, contributor files | Done; CI not yet run (no remote); releases and code signing open |
+| 1 | Repo basics | AGPL-3.0 license, `.gitignore`, first commit, CI, README, contributor files | Done; CI green on GitHub Actions (Oct 26); releases and code signing open |
 | 2 | Viewer | Ctrl+wheel and keyboard zoom, Home/End/PageUp/PageDown, Go to page, print/rotate/delete shortcuts, prefetching render cache | Done |
 | 3 | Fill & Sign | Form fields panel, visual signatures (draw/type/image), initials/date/check stamps, flatten to new copy | Done |
 | 4 | Quick tools | Compress, password protect/remove, watermark, header/footer/page numbers, Bates, bookmarks, links, crop, export images, extract images, properties, compare | Done (Compare: page-by-page text diff and pixel overlay, read-only) |
