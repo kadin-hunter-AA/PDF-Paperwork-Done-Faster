@@ -39,6 +39,20 @@ jobs:
           ./development/tools/Setup-AdvancedPython.ps1
           python -m pip install --disable-pip-version-check --target development/tools/advanced-python-3.14.8/packages pymupdf==1.28.2
 
+      # Same pinned tessdata_fast commit and digests as tools/Setup-AdvancedOcr.ps1.
+      - name: Stage pinned English OCR model
+        run: |
+          $data = 'development/tools/advanced-python-3.14.8/tessdata'
+          New-Item -ItemType Directory -Force -Path $data | Out-Null
+          $base = 'https://raw.githubusercontent.com/tesseract-ocr/tessdata_fast/87416418657359cb625c412a48b6e1d6d41c29bd'
+          foreach ($file in @(
+              @{ Name = 'eng.traineddata'; Sha = '7d4322bd2a7749724879683fc3912cb542f19906c83bcc1a52132556427170b2' },
+              @{ Name = 'LICENSE'; Sha = 'cfc7749b96f63bd31c3c42b5c471bf756814053e847c10f3eb003417bc523d30' })) {
+            $path = Join-Path $data $file.Name
+            Invoke-WebRequest -Uri "$base/$($file.Name)" -OutFile $path
+            if ((Get-FileHash -LiteralPath $path -Algorithm SHA256).Hash.ToLowerInvariant() -ne $file.Sha) { throw "$($file.Name) failed its integrity check." }
+          }
+
       - name: Build
         run: |
           & ./development/tools/dotnet/dotnet.exe build ./development/HunterPdf.slnx --nologo -warnaserror
