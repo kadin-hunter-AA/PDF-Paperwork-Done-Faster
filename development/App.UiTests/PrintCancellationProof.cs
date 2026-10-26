@@ -26,8 +26,8 @@ internal static class PrintCancellationProof
             var source = new FakeSource(output, 4 * 1024 * 1024);
             var sink = new FakeSink();
             GC.Collect(); var baseline = GC.GetTotalMemory(true);
-            long peak = 0;
-            var summary = await PrintPipeline.RunJobAsync(sink, source, all, sizes, options, "test", _ => peak = Math.Max(peak, GC.GetTotalMemory(false) - baseline), CancellationToken.None);
+            long peak = 0; // Live memory after collection: uncollected garbage depends on the machine's GC timing.
+            var summary = await PrintPipeline.RunJobAsync(sink, source, all, sizes, options, "test", _ => peak = Math.Max(peak, GC.GetTotalMemory(true) - baseline), CancellationToken.None);
             Check(sink.Drawn.Count == 30 && sink.Sheets == 30 && summary.Pages == 30 && sink.Completed == true, "A 30-page job submits every page to the sink and completes");
             Check(source.MaxLive == 1 && source.Live == 0, "Pages are rendered, submitted and released one at a time");
             Check(Directory.GetFiles(output, "*.tmp").Length == 0, "Every per-page payload file is deleted after submission");
