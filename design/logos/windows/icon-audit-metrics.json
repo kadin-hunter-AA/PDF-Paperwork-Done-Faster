@@ -1,0 +1,525 @@
+{
+  "source": {
+    "path": "design\\logos\\selected-pdf-quill.png",
+    "dimensions": [
+      1254,
+      1254
+    ],
+    "alpha_bbox": [
+      0,
+      15,
+      1254,
+      1238
+    ],
+    "alpha_bands": {
+      "alpha_0": 1148324,
+      "alpha_1_7": 25017,
+      "alpha_8_31": 2449,
+      "alpha_32_127": 4158,
+      "alpha_128_254": 392016,
+      "alpha_255": 552
+    },
+    "low_alpha_components_8conn": 407,
+    "edge_attached_components": 67,
+    "isolated_components": 340,
+    "isolated_pixels": 763,
+    "largest_component_sizes": [
+      4552,
+      4527,
+      2711,
+      2658,
+      1634,
+      1528,
+      1466,
+      1108,
+      1063,
+      916
+    ]
+  },
+  "production_master": {
+    "path": "design\\logos\\windows\\production-master.png",
+    "dimensions": [
+      1254,
+      1254
+    ],
+    "alpha_bbox": [
+      32,
+      15,
+      1254,
+      1238
+    ],
+    "alpha_bands": {
+      "alpha_0": 1149087,
+      "alpha_1_7": 24254,
+      "alpha_8_31": 2449,
+      "alpha_32_127": 4158,
+      "alpha_128_254": 392016,
+      "alpha_255": 552
+    },
+    "low_alpha_components_8conn": 67,
+    "edge_attached_components": 67,
+    "isolated_components": 0,
+    "isolated_pixels": 0,
+    "largest_component_sizes": [
+      4552,
+      4527,
+      2711,
+      2658,
+      1634,
+      1528,
+      1466,
+      1108,
+      1063,
+      916
+    ]
+  },
+  "png_exports": {
+    "16": {
+      "path": "development\\App.Desktop\\Assets\\PdfEditor-16.png",
+      "dimensions": [
+        16,
+        16
+      ],
+      "alpha_bbox": [
+        1,
+        1,
+        15,
+        15
+      ],
+      "alpha_bands": {
+        "alpha_0": 194,
+        "alpha_1_7": 1,
+        "alpha_8_31": 3,
+        "alpha_32_127": 1,
+        "alpha_128_254": 57,
+        "alpha_255": 0
+      },
+      "sha256": "6437bf5d827b43e90400264fc0356ce4c01933eadda210b5873b3a18def9071b"
+    },
+    "20": {
+      "path": "development\\App.Desktop\\Assets\\PdfEditor-20.png",
+      "dimensions": [
+        20,
+        20
+      ],
+      "alpha_bbox": [
+        1,
+        1,
+        19,
+        19
+      ],
+      "alpha_bands": {
+        "alpha_0": 307,
+        "alpha_1_7": 3,
+        "alpha_8_31": 0,
+        "alpha_32_127": 0,
+        "alpha_128_254": 90,
+        "alpha_255": 0
+      },
+      "sha256": "9558074428650376cad3cb8f44bb534a4a0a71abb89fc1b3469c406feb64b991"
+    },
+    "24": {
+      "path": "development\\App.Desktop\\Assets\\PdfEditor-24.png",
+      "dimensions": [
+        24,
+        24
+      ],
+      "alpha_bbox": [
+        1,
+        1,
+        23,
+        23
+      ],
+      "alpha_bands": {
+        "alpha_0": 436,
+        "alpha_1_7": 7,
+        "alpha_8_31": 3,
+        "alpha_32_127": 1,
+        "alpha_128_254": 129,
+        "alpha_255": 0
+      },
+      "sha256": "ca2131092f3621bcd108603cf5a24780eecdd9183081f958ecba1dc22cc60bcd"
+    },
+    "30": {
+      "path": "development\\App.Desktop\\Assets\\PdfEditor-30.png",
+      "dimensions": [
+        30,
+        30
+      ],
+      "alpha_bbox": [
+        2,
+        2,
+        29,
+        29
+      ],
+      "alpha_bands": {
+        "alpha_0": 678,
+        "alpha_1_7": 15,
+        "alpha_8_31": 4,
+        "alpha_32_127": 4,
+        "alpha_128_254": 199,
+        "alpha_255": 0
+      },
+      "sha256": "63d24cbbcd26933fad79df01f8ab8c761893d50cbc9bbb17fe22b0494d5fe60d"
+    },
+    "32": {
+      "path": "development\\App.Desktop\\Assets\\PdfEditor-32.png",
+      "dimensions": [
+        32,
+        32
+      ],
+      "alpha_bbox": [
+        2,
+        2,
+        31,
+        31
+      ],
+      "alpha_bands": {
+        "alpha_0": 775,
+        "alpha_1_7": 15,
+        "alpha_8_31": 2,
+        "alpha_32_127": 2,
+        "alpha_128_254": 230,
+        "alpha_255": 0
+      },
+      "sha256": "f33c52a71b4bc06420f3e575a5613c55cca239133e07a61017effbcf3f112dde"
+    },
+    "36": {
+      "path": "development\\App.Desktop\\Assets\\PdfEditor-36.png",
+      "dimensions": [
+        36,
+        36
+      ],
+      "alpha_bbox": [
+        2,
+        2,
+        35,
+        34
+      ],
+      "alpha_bands": {
+        "alpha_0": 989,
+        "alpha_1_7": 15,
+        "alpha_8_31": 1,
+        "alpha_32_127": 5,
+        "alpha_128_254": 286,
+        "alpha_255": 0
+      },
+      "sha256": "bcb3049fc267a55e30862aeb7682752c2af8d4480a0992ff2dfce7499b35ed35"
+    },
+    "40": {
+      "path": "development\\App.Desktop\\Assets\\PdfEditor-40.png",
+      "dimensions": [
+        40,
+        40
+      ],
+      "alpha_bbox": [
+        2,
+        2,
+        39,
+        38
+      ],
+      "alpha_bands": {
+        "alpha_0": 1214,
+        "alpha_1_7": 21,
+        "alpha_8_31": 9,
+        "alpha_32_127": 9,
+        "alpha_128_254": 347,
+        "alpha_255": 0
+      },
+      "sha256": "858f73264fb6f441d41792ad646cf3e0a37060bda631bf52ab6a9592b956f9f2"
+    },
+    "48": {
+      "path": "development\\App.Desktop\\Assets\\PdfEditor-48.png",
+      "dimensions": [
+        48,
+        48
+      ],
+      "alpha_bbox": [
+        3,
+        2,
+        47,
+        46
+      ],
+      "alpha_bands": {
+        "alpha_0": 1747,
+        "alpha_1_7": 36,
+        "alpha_8_31": 8,
+        "alpha_32_127": 7,
+        "alpha_128_254": 506,
+        "alpha_255": 0
+      },
+      "sha256": "85c0c758c6b3dd809bb7b76cdb9e48547adba9ac77ea680dc09d8151474b64f8"
+    },
+    "60": {
+      "path": "development\\App.Desktop\\Assets\\PdfEditor-60.png",
+      "dimensions": [
+        60,
+        60
+      ],
+      "alpha_bbox": [
+        3,
+        3,
+        58,
+        57
+      ],
+      "alpha_bands": {
+        "alpha_0": 2748,
+        "alpha_1_7": 41,
+        "alpha_8_31": 4,
+        "alpha_32_127": 10,
+        "alpha_128_254": 797,
+        "alpha_255": 0
+      },
+      "sha256": "edd7396c931ad271a9969533884a15b3b23faf06db4b990937434a1fe62ecfa6"
+    },
+    "64": {
+      "path": "development\\App.Desktop\\Assets\\PdfEditor-64.png",
+      "dimensions": [
+        64,
+        64
+      ],
+      "alpha_bbox": [
+        4,
+        3,
+        62,
+        61
+      ],
+      "alpha_bands": {
+        "alpha_0": 3114,
+        "alpha_1_7": 58,
+        "alpha_8_31": 7,
+        "alpha_32_127": 14,
+        "alpha_128_254": 903,
+        "alpha_255": 0
+      },
+      "sha256": "2d27e3293d7fe3a15a8af639705405523eca6530a2992f5d0e1c84d189cd1ae3"
+    },
+    "72": {
+      "path": "development\\App.Desktop\\Assets\\PdfEditor-72.png",
+      "dimensions": [
+        72,
+        72
+      ],
+      "alpha_bbox": [
+        4,
+        3,
+        70,
+        69
+      ],
+      "alpha_bands": {
+        "alpha_0": 3944,
+        "alpha_1_7": 75,
+        "alpha_8_31": 14,
+        "alpha_32_127": 7,
+        "alpha_128_254": 1144,
+        "alpha_255": 0
+      },
+      "sha256": "543e6bbc39be10ef7d8833e4ea5badbcdff1ffe0181bd8f092d98c564eb36c15"
+    },
+    "80": {
+      "path": "development\\App.Desktop\\Assets\\PdfEditor-80.png",
+      "dimensions": [
+        80,
+        80
+      ],
+      "alpha_bbox": [
+        4,
+        4,
+        78,
+        77
+      ],
+      "alpha_bands": {
+        "alpha_0": 4860,
+        "alpha_1_7": 96,
+        "alpha_8_31": 20,
+        "alpha_32_127": 15,
+        "alpha_128_254": 1409,
+        "alpha_255": 0
+      },
+      "sha256": "fadcf8bce1857520c68250efdea74ebd318f5d9a6db580aa1b71015efa5756af"
+    },
+    "96": {
+      "path": "development\\App.Desktop\\Assets\\PdfEditor-96.png",
+      "dimensions": [
+        96,
+        96
+      ],
+      "alpha_bbox": [
+        5,
+        4,
+        93,
+        92
+      ],
+      "alpha_bands": {
+        "alpha_0": 7006,
+        "alpha_1_7": 138,
+        "alpha_8_31": 21,
+        "alpha_32_127": 20,
+        "alpha_128_254": 2031,
+        "alpha_255": 0
+      },
+      "sha256": "bc0f3ae6d9bc41873783166311f19355abfc057dc5a8b9e63d64dbe2b7cb7259"
+    },
+    "128": {
+      "path": "development\\App.Desktop\\Assets\\PdfEditor-128.png",
+      "dimensions": [
+        128,
+        128
+      ],
+      "alpha_bbox": [
+        7,
+        5,
+        124,
+        123
+      ],
+      "alpha_bands": {
+        "alpha_0": 12475,
+        "alpha_1_7": 211,
+        "alpha_8_31": 32,
+        "alpha_32_127": 59,
+        "alpha_128_254": 3607,
+        "alpha_255": 0
+      },
+      "sha256": "9a3483d0a1becdcaef8d791e427e2fc0f196dca30763fdc3e0b35f79c908af89"
+    },
+    "150": {
+      "path": "development\\App.Desktop\\Assets\\PdfEditor-150.png",
+      "dimensions": [
+        150,
+        150
+      ],
+      "alpha_bbox": [
+        8,
+        6,
+        146,
+        144
+      ],
+      "alpha_bands": {
+        "alpha_0": 17109,
+        "alpha_1_7": 313,
+        "alpha_8_31": 42,
+        "alpha_32_127": 67,
+        "alpha_128_254": 4969,
+        "alpha_255": 0
+      },
+      "sha256": "9c547ea5ee7994880f9698cb57da18eb480007c818eac3f2aeecb6f6475d29a3"
+    },
+    "256": {
+      "path": "development\\App.Desktop\\Assets\\PdfEditor-256.png",
+      "dimensions": [
+        256,
+        256
+      ],
+      "alpha_bbox": [
+        14,
+        11,
+        248,
+        245
+      ],
+      "alpha_bands": {
+        "alpha_0": 49863,
+        "alpha_1_7": 913,
+        "alpha_8_31": 123,
+        "alpha_32_127": 184,
+        "alpha_128_254": 14453,
+        "alpha_255": 0
+      },
+      "sha256": "e5fda7af82db7c82b78130f19e3db68f978cf54e00e3348cc97dec394a876fb4"
+    }
+  },
+  "ico": {
+    "path": "development\\App.Desktop\\Assets\\PdfEditor.ico",
+    "bytes": 74243,
+    "frame_count": 9,
+    "frames": [
+      {
+        "width": 16,
+        "height": 16,
+        "payload_bytes": 444,
+        "payload_offset": 150
+      },
+      {
+        "width": 20,
+        "height": 20,
+        "payload_bytes": 578,
+        "payload_offset": 594
+      },
+      {
+        "width": 24,
+        "height": 24,
+        "payload_bytes": 766,
+        "payload_offset": 1172
+      },
+      {
+        "width": 32,
+        "height": 32,
+        "payload_bytes": 1228,
+        "payload_offset": 1938
+      },
+      {
+        "width": 40,
+        "height": 40,
+        "payload_bytes": 1805,
+        "payload_offset": 3166
+      },
+      {
+        "width": 48,
+        "height": 48,
+        "payload_bytes": 2458,
+        "payload_offset": 4971
+      },
+      {
+        "width": 64,
+        "height": 64,
+        "payload_bytes": 4017,
+        "payload_offset": 7429
+      },
+      {
+        "width": 128,
+        "height": 128,
+        "payload_bytes": 13979,
+        "payload_offset": 11446
+      },
+      {
+        "width": 256,
+        "height": 256,
+        "payload_bytes": 48818,
+        "payload_offset": 25425
+      }
+    ],
+    "header_reserved": 0,
+    "header_type": 1,
+    "planes": 1,
+    "bits_per_pixel": 32
+  },
+  "cleanup_assertions": {
+    "rgb_identical_every_pixel": true,
+    "alpha_changed_only_in_eligible_detached_components": true,
+    "pixels_cleared": 763,
+    "eligible_component_limit_px": 64,
+    "alpha_cutoff_exclusive": 8
+  },
+  "sha256": {
+    "design\\logos\\selected-pdf-quill.png": "ffe75fbf5ebec2911948c2730aad06765eb17b08e0c9f71448f033e372957c3c",
+    "design\\logos\\windows\\production-master.png": "56c303c7131566ceaeb8d7e4eba18b9ac5cc13f835b64d48e2b53ed906dfb291",
+    "design\\logos\\windows\\export-icons.ps1": "e026d32cf6ce5629feea8bdff01e26f98aabd8e6bdf0fa76105572e83e6041e7",
+    "design\\logos\\windows\\audit-icons.py": "9c0fdb49dd843d4d55f56542933063f66a1472bd77aaafd70a871b20c605be49",
+    "development\\App.Desktop\\Assets\\PdfEditor-128.png": "9a3483d0a1becdcaef8d791e427e2fc0f196dca30763fdc3e0b35f79c908af89",
+    "development\\App.Desktop\\Assets\\PdfEditor-150.png": "9c547ea5ee7994880f9698cb57da18eb480007c818eac3f2aeecb6f6475d29a3",
+    "development\\App.Desktop\\Assets\\PdfEditor-16.png": "6437bf5d827b43e90400264fc0356ce4c01933eadda210b5873b3a18def9071b",
+    "development\\App.Desktop\\Assets\\PdfEditor-20.png": "9558074428650376cad3cb8f44bb534a4a0a71abb89fc1b3469c406feb64b991",
+    "development\\App.Desktop\\Assets\\PdfEditor-24.png": "ca2131092f3621bcd108603cf5a24780eecdd9183081f958ecba1dc22cc60bcd",
+    "development\\App.Desktop\\Assets\\PdfEditor-256.png": "e5fda7af82db7c82b78130f19e3db68f978cf54e00e3348cc97dec394a876fb4",
+    "development\\App.Desktop\\Assets\\PdfEditor-30.png": "63d24cbbcd26933fad79df01f8ab8c761893d50cbc9bbb17fe22b0494d5fe60d",
+    "development\\App.Desktop\\Assets\\PdfEditor-32.png": "f33c52a71b4bc06420f3e575a5613c55cca239133e07a61017effbcf3f112dde",
+    "development\\App.Desktop\\Assets\\PdfEditor-36.png": "bcb3049fc267a55e30862aeb7682752c2af8d4480a0992ff2dfce7499b35ed35",
+    "development\\App.Desktop\\Assets\\PdfEditor-40.png": "858f73264fb6f441d41792ad646cf3e0a37060bda631bf52ab6a9592b956f9f2",
+    "development\\App.Desktop\\Assets\\PdfEditor-48.png": "85c0c758c6b3dd809bb7b76cdb9e48547adba9ac77ea680dc09d8151474b64f8",
+    "development\\App.Desktop\\Assets\\PdfEditor-60.png": "edd7396c931ad271a9969533884a15b3b23faf06db4b990937434a1fe62ecfa6",
+    "development\\App.Desktop\\Assets\\PdfEditor-64.png": "2d27e3293d7fe3a15a8af639705405523eca6530a2992f5d0e1c84d189cd1ae3",
+    "development\\App.Desktop\\Assets\\PdfEditor-72.png": "543e6bbc39be10ef7d8833e4ea5badbcdff1ffe0181bd8f092d98c564eb36c15",
+    "development\\App.Desktop\\Assets\\PdfEditor-80.png": "fadcf8bce1857520c68250efdea74ebd318f5d9a6db580aa1b71015efa5756af",
+    "development\\App.Desktop\\Assets\\PdfEditor-96.png": "bc0f3ae6d9bc41873783166311f19355abfc057dc5a8b9e63d64dbe2b7cb7259",
+    "development\\App.Desktop\\Assets\\PdfEditor.ico": "9527fcfda611baa02e318a4c4066db66271171a22431762e54c5dd8c70bf3f22"
+  }
+}

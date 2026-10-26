@@ -1,0 +1,606 @@
+{
+  "date": "2026-10-12",
+  "icoFrames": [
+    16,
+    20,
+    24,
+    32,
+    40,
+    48,
+    64,
+    128,
+    256
+  ],
+  "pngChecks": [
+    {
+      "file": "png/icon-128.png",
+      "width": 128,
+      "height": 128,
+      "alpha": true,
+      "transparentCorner": true
+    },
+    {
+      "file": "png/icon-16.png",
+      "width": 16,
+      "height": 16,
+      "alpha": true,
+      "transparentCorner": true
+    },
+    {
+      "file": "png/icon-20.png",
+      "width": 20,
+      "height": 20,
+      "alpha": true,
+      "transparentCorner": true
+    },
+    {
+      "file": "png/icon-24.png",
+      "width": 24,
+      "height": 24,
+      "alpha": true,
+      "transparentCorner": true
+    },
+    {
+      "file": "png/icon-256.png",
+      "width": 256,
+      "height": 256,
+      "alpha": true,
+      "transparentCorner": true
+    },
+    {
+      "file": "png/icon-30.png",
+      "width": 30,
+      "height": 30,
+      "alpha": true,
+      "transparentCorner": true
+    },
+    {
+      "file": "png/icon-32.png",
+      "width": 32,
+      "height": 32,
+      "alpha": true,
+      "transparentCorner": true
+    },
+    {
+      "file": "png/icon-36.png",
+      "width": 36,
+      "height": 36,
+      "alpha": true,
+      "transparentCorner": true
+    },
+    {
+      "file": "png/icon-40.png",
+      "width": 40,
+      "height": 40,
+      "alpha": true,
+      "transparentCorner": true
+    },
+    {
+      "file": "png/icon-48.png",
+      "width": 48,
+      "height": 48,
+      "alpha": true,
+      "transparentCorner": true
+    },
+    {
+      "file": "png/icon-60.png",
+      "width": 60,
+      "height": 60,
+      "alpha": true,
+      "transparentCorner": true
+    },
+    {
+      "file": "png/icon-64.png",
+      "width": 64,
+      "height": 64,
+      "alpha": true,
+      "transparentCorner": true
+    },
+    {
+      "file": "png/icon-72.png",
+      "width": 72,
+      "height": 72,
+      "alpha": true,
+      "transparentCorner": true
+    },
+    {
+      "file": "png/icon-80.png",
+      "width": 80,
+      "height": 80,
+      "alpha": true,
+      "transparentCorner": true
+    },
+    {
+      "file": "png/icon-96.png",
+      "width": 96,
+      "height": 96,
+      "alpha": true,
+      "transparentCorner": true
+    },
+    {
+      "file": "msix/AppList.png",
+      "width": 44,
+      "height": 44,
+      "alpha": true,
+      "transparentCorner": true
+    },
+    {
+      "file": "msix/AppList.scale-100.png",
+      "width": 44,
+      "height": 44,
+      "alpha": true,
+      "transparentCorner": true
+    },
+    {
+      "file": "msix/AppList.scale-125.png",
+      "width": 55,
+      "height": 55,
+      "alpha": true,
+      "transparentCorner": true
+    },
+    {
+      "file": "msix/AppList.scale-150.png",
+      "width": 66,
+      "height": 66,
+      "alpha": true,
+      "transparentCorner": true
+    },
+    {
+      "file": "msix/AppList.scale-200.png",
+      "width": 88,
+      "height": 88,
+      "alpha": true,
+      "transparentCorner": true
+    },
+    {
+      "file": "msix/AppList.scale-250.png",
+      "width": 110,
+      "height": 110,
+      "alpha": true,
+      "transparentCorner": true
+    },
+    {
+      "file": "msix/AppList.scale-300.png",
+      "width": 132,
+      "height": 132,
+      "alpha": true,
+      "transparentCorner": true
+    },
+    {
+      "file": "msix/AppList.scale-400.png",
+      "width": 176,
+      "height": 176,
+      "alpha": true,
+      "transparentCorner": true
+    },
+    {
+      "file": "msix/AppList.targetsize-128.png",
+      "width": 128,
+      "height": 128,
+      "alpha": true,
+      "transparentCorner": true
+    },
+    {
+      "file": "msix/AppList.targetsize-128_altform-lightunplated.png",
+      "width": 128,
+      "height": 128,
+      "alpha": true,
+      "transparentCorner": true
+    },
+    {
+      "file": "msix/AppList.targetsize-128_altform-unplated.png",
+      "width": 128,
+      "height": 128,
+      "alpha": true,
+      "transparentCorner": true
+    },
+    {
+      "file": "msix/AppList.targetsize-16.png",
+      "width": 16,
+      "height": 16,
+      "alpha": true,
+      "transparentCorner": true
+    },
+    {
+      "file": "msix/AppList.targetsize-16_altform-lightunplated.png",
+      "width": 16,
+      "height": 16,
+      "alpha": true,
+      "transparentCorner": true
+    },
+    {
+      "file": "msix/AppList.targetsize-16_altform-unplated.png",
+      "width": 16,
+      "height": 16,
+      "alpha": true,
+      "transparentCorner": true
+    },
+    {
+      "file": "msix/AppList.targetsize-20.png",
+      "width": 20,
+      "height": 20,
+      "alpha": true,
+      "transparentCorner": true
+    },
+    {
+      "file": "msix/AppList.targetsize-20_altform-lightunplated.png",
+      "width": 20,
+      "height": 20,
+      "alpha": true,
+      "transparentCorner": true
+    },
+    {
+      "file": "msix/AppList.targetsize-20_altform-unplated.png",
+      "width": 20,
+      "height": 20,
+      "alpha": true,
+      "transparentCorner": true
+    },
+    {
+      "file": "msix/AppList.targetsize-24.png",
+      "width": 24,
+      "height": 24,
+      "alpha": true,
+      "transparentCorner": true
+    },
+    {
+      "file": "msix/AppList.targetsize-24_altform-lightunplated.png",
+      "width": 24,
+      "height": 24,
+      "alpha": true,
+      "transparentCorner": true
+    },
+    {
+      "file": "msix/AppList.targetsize-24_altform-unplated.png",
+      "width": 24,
+      "height": 24,
+      "alpha": true,
+      "transparentCorner": true
+    },
+    {
+      "file": "msix/AppList.targetsize-256.png",
+      "width": 256,
+      "height": 256,
+      "alpha": true,
+      "transparentCorner": true
+    },
+    {
+      "file": "msix/AppList.targetsize-256_altform-lightunplated.png",
+      "width": 256,
+      "height": 256,
+      "alpha": true,
+      "transparentCorner": true
+    },
+    {
+      "file": "msix/AppList.targetsize-256_altform-unplated.png",
+      "width": 256,
+      "height": 256,
+      "alpha": true,
+      "transparentCorner": true
+    },
+    {
+      "file": "msix/AppList.targetsize-30.png",
+      "width": 30,
+      "height": 30,
+      "alpha": true,
+      "transparentCorner": true
+    },
+    {
+      "file": "msix/AppList.targetsize-30_altform-lightunplated.png",
+      "width": 30,
+      "height": 30,
+      "alpha": true,
+      "transparentCorner": true
+    },
+    {
+      "file": "msix/AppList.targetsize-30_altform-unplated.png",
+      "width": 30,
+      "height": 30,
+      "alpha": true,
+      "transparentCorner": true
+    },
+    {
+      "file": "msix/AppList.targetsize-32.png",
+      "width": 32,
+      "height": 32,
+      "alpha": true,
+      "transparentCorner": true
+    },
+    {
+      "file": "msix/AppList.targetsize-32_altform-lightunplated.png",
+      "width": 32,
+      "height": 32,
+      "alpha": true,
+      "transparentCorner": true
+    },
+    {
+      "file": "msix/AppList.targetsize-32_altform-unplated.png",
+      "width": 32,
+      "height": 32,
+      "alpha": true,
+      "transparentCorner": true
+    },
+    {
+      "file": "msix/AppList.targetsize-36.png",
+      "width": 36,
+      "height": 36,
+      "alpha": true,
+      "transparentCorner": true
+    },
+    {
+      "file": "msix/AppList.targetsize-36_altform-lightunplated.png",
+      "width": 36,
+      "height": 36,
+      "alpha": true,
+      "transparentCorner": true
+    },
+    {
+      "file": "msix/AppList.targetsize-36_altform-unplated.png",
+      "width": 36,
+      "height": 36,
+      "alpha": true,
+      "transparentCorner": true
+    },
+    {
+      "file": "msix/AppList.targetsize-40.png",
+      "width": 40,
+      "height": 40,
+      "alpha": true,
+      "transparentCorner": true
+    },
+    {
+      "file": "msix/AppList.targetsize-40_altform-lightunplated.png",
+      "width": 40,
+      "height": 40,
+      "alpha": true,
+      "transparentCorner": true
+    },
+    {
+      "file": "msix/AppList.targetsize-40_altform-unplated.png",
+      "width": 40,
+      "height": 40,
+      "alpha": true,
+      "transparentCorner": true
+    },
+    {
+      "file": "msix/AppList.targetsize-48.png",
+      "width": 48,
+      "height": 48,
+      "alpha": true,
+      "transparentCorner": true
+    },
+    {
+      "file": "msix/AppList.targetsize-48_altform-lightunplated.png",
+      "width": 48,
+      "height": 48,
+      "alpha": true,
+      "transparentCorner": true
+    },
+    {
+      "file": "msix/AppList.targetsize-48_altform-unplated.png",
+      "width": 48,
+      "height": 48,
+      "alpha": true,
+      "transparentCorner": true
+    },
+    {
+      "file": "msix/AppList.targetsize-60.png",
+      "width": 60,
+      "height": 60,
+      "alpha": true,
+      "transparentCorner": true
+    },
+    {
+      "file": "msix/AppList.targetsize-60_altform-lightunplated.png",
+      "width": 60,
+      "height": 60,
+      "alpha": true,
+      "transparentCorner": true
+    },
+    {
+      "file": "msix/AppList.targetsize-60_altform-unplated.png",
+      "width": 60,
+      "height": 60,
+      "alpha": true,
+      "transparentCorner": true
+    },
+    {
+      "file": "msix/AppList.targetsize-64.png",
+      "width": 64,
+      "height": 64,
+      "alpha": true,
+      "transparentCorner": true
+    },
+    {
+      "file": "msix/AppList.targetsize-64_altform-lightunplated.png",
+      "width": 64,
+      "height": 64,
+      "alpha": true,
+      "transparentCorner": true
+    },
+    {
+      "file": "msix/AppList.targetsize-64_altform-unplated.png",
+      "width": 64,
+      "height": 64,
+      "alpha": true,
+      "transparentCorner": true
+    },
+    {
+      "file": "msix/AppList.targetsize-72.png",
+      "width": 72,
+      "height": 72,
+      "alpha": true,
+      "transparentCorner": true
+    },
+    {
+      "file": "msix/AppList.targetsize-72_altform-lightunplated.png",
+      "width": 72,
+      "height": 72,
+      "alpha": true,
+      "transparentCorner": true
+    },
+    {
+      "file": "msix/AppList.targetsize-72_altform-unplated.png",
+      "width": 72,
+      "height": 72,
+      "alpha": true,
+      "transparentCorner": true
+    },
+    {
+      "file": "msix/AppList.targetsize-80.png",
+      "width": 80,
+      "height": 80,
+      "alpha": true,
+      "transparentCorner": true
+    },
+    {
+      "file": "msix/AppList.targetsize-80_altform-lightunplated.png",
+      "width": 80,
+      "height": 80,
+      "alpha": true,
+      "transparentCorner": true
+    },
+    {
+      "file": "msix/AppList.targetsize-80_altform-unplated.png",
+      "width": 80,
+      "height": 80,
+      "alpha": true,
+      "transparentCorner": true
+    },
+    {
+      "file": "msix/AppList.targetsize-96.png",
+      "width": 96,
+      "height": 96,
+      "alpha": true,
+      "transparentCorner": true
+    },
+    {
+      "file": "msix/AppList.targetsize-96_altform-lightunplated.png",
+      "width": 96,
+      "height": 96,
+      "alpha": true,
+      "transparentCorner": true
+    },
+    {
+      "file": "msix/AppList.targetsize-96_altform-unplated.png",
+      "width": 96,
+      "height": 96,
+      "alpha": true,
+      "transparentCorner": true
+    },
+    {
+      "file": "msix/Square150x150Logo.png",
+      "width": 150,
+      "height": 150,
+      "alpha": true,
+      "transparentCorner": true
+    },
+    {
+      "file": "msix/Square150x150Logo.scale-100.png",
+      "width": 150,
+      "height": 150,
+      "alpha": true,
+      "transparentCorner": true
+    },
+    {
+      "file": "msix/Square150x150Logo.scale-125.png",
+      "width": 188,
+      "height": 188,
+      "alpha": true,
+      "transparentCorner": true
+    },
+    {
+      "file": "msix/Square150x150Logo.scale-150.png",
+      "width": 225,
+      "height": 225,
+      "alpha": true,
+      "transparentCorner": true
+    },
+    {
+      "file": "msix/Square150x150Logo.scale-200.png",
+      "width": 300,
+      "height": 300,
+      "alpha": true,
+      "transparentCorner": true
+    },
+    {
+      "file": "msix/Square150x150Logo.scale-250.png",
+      "width": 375,
+      "height": 375,
+      "alpha": true,
+      "transparentCorner": true
+    },
+    {
+      "file": "msix/Square150x150Logo.scale-300.png",
+      "width": 450,
+      "height": 450,
+      "alpha": true,
+      "transparentCorner": true
+    },
+    {
+      "file": "msix/Square150x150Logo.scale-400.png",
+      "width": 600,
+      "height": 600,
+      "alpha": true,
+      "transparentCorner": true
+    },
+    {
+      "file": "msix/StoreLogo.png",
+      "width": 50,
+      "height": 50,
+      "alpha": true,
+      "transparentCorner": true
+    },
+    {
+      "file": "msix/StoreLogo.scale-100.png",
+      "width": 50,
+      "height": 50,
+      "alpha": true,
+      "transparentCorner": true
+    },
+    {
+      "file": "msix/StoreLogo.scale-125.png",
+      "width": 63,
+      "height": 63,
+      "alpha": true,
+      "transparentCorner": true
+    },
+    {
+      "file": "msix/StoreLogo.scale-150.png",
+      "width": 75,
+      "height": 75,
+      "alpha": true,
+      "transparentCorner": true
+    },
+    {
+      "file": "msix/StoreLogo.scale-200.png",
+      "width": 100,
+      "height": 100,
+      "alpha": true,
+      "transparentCorner": true
+    },
+    {
+      "file": "msix/StoreLogo.scale-250.png",
+      "width": 125,
+      "height": 125,
+      "alpha": true,
+      "transparentCorner": true
+    },
+    {
+      "file": "msix/StoreLogo.scale-300.png",
+      "width": 150,
+      "height": 150,
+      "alpha": true,
+      "transparentCorner": true
+    },
+    {
+      "file": "msix/StoreLogo.scale-400.png",
+      "width": 200,
+      "height": 200,
+      "alpha": true,
+      "transparentCorner": true
+    }
+  ],
+  "smallMasterUpTo": 48,
+  "contentFraction": 0.86
+}

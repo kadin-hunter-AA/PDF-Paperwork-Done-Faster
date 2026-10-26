@@ -1,0 +1,33 @@
+# Build output
+**/bin/
+**/obj/
+**/__pycache__/
+*.pyc
+*.user
+.vs/
+
+# Evidence and packages (publish as release assets instead)
+artifacts/
+**/artifacts/
+/--workflow-only/
+development/development/
+development/.pending-ocr-session/
+
+# Bundled toolchains and runtimes (restored by development/tools/setup.ps1)
+development/tools/dotnet/
+development/tools/*-packages/
+development/tools/advanced-python-*/
+development/tools/ocr-runtime/
+development/tools/redaction-pymupdf/
+development/tools/python-*-embed-*.zip
+development/native/
+
+# Archives
+design/logos/**/*.zip
+*.zip
+
+# Local agent state
+.claude/settings.local.json
+
+# WPF markup-compile temporary projects
+*_wpftmp.csproj

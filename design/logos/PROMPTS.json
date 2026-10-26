@@ -1,0 +1,27 @@
+{
+  "tool": "built-in image_gen",
+  "reference": "reference.png",
+  "transparentBackground": true,
+  "prompts": [
+    {
+      "name": "01-classic",
+      "prompt": "Edit attached image into a standalone Windows 11 PDF app logo concept, 1024 square transparent canvas. Keep ONLY the blank folded page and diagonal feather/fountain quill elements. REMOVE crown, horizontal lines, blue rounded tile, background, lettering and all other objects. Preserve recognizable page behind quill and nib at bottom. Hunter OPS exact brand: page Paper #F5F6FA with white #FFFFFF; feather Logo purple #33178B and Reverse purple #9279FB flat planes; nib and shaft Gold #E8C078; outlines Ink #171928; fold Muted lavender #B5ACD4. Teal #1FA6A8 used only as a thin directional edge along page fold, subordinate to purple. Gold only on pen. Flat upright mark, no gradients, glow, glass, shadows, texture, sparkles or extra symbols. No official Hunter OPS wordmark or H/bracket logo. Transparent exterior, safe margins and strong small-size silhouette. Closest to reference silhouette: rounded folded page and elegantly curved layered purple feather with minimal flat facets."
+    },
+    {
+      "name": "02-geometric",
+      "prompt": "Edit attached image into a standalone Windows 11 PDF app logo concept, 1024 square transparent canvas. Keep ONLY the blank folded page and diagonal feather/fountain quill elements. REMOVE crown, horizontal lines, blue rounded tile, background, lettering and all other objects. Preserve recognizable page behind quill and nib at bottom. Hunter OPS exact brand: page Paper #F5F6FA with white #FFFFFF; feather Logo purple #33178B and Reverse purple #9279FB flat planes; nib and shaft Gold #E8C078; outlines Ink #171928; fold Muted lavender #B5ACD4. Teal #1FA6A8 used only as a thin directional edge along page fold, subordinate to purple. Gold only on pen. Flat upright mark, no gradients, glow, glass, shadows, texture, sparkles or extra symbols. No official Hunter OPS wordmark or H/bracket logo. Transparent exterior, safe margins and strong small-size silhouette. Bold geometric flat shapes: simple squared paper with crisp fold, broad feather with only three large facets, large clear gold nib."
+    },
+    {
+      "name": "03-soft",
+      "prompt": "Edit attached image into a standalone Windows 11 PDF app logo concept, 1024 square transparent canvas. Keep ONLY the blank folded page and diagonal feather/fountain quill elements. REMOVE crown, horizontal lines, blue rounded tile, background, lettering and all other objects. Preserve recognizable page behind quill and nib at bottom. Hunter OPS exact brand: page Paper #F5F6FA with white #FFFFFF; feather Logo purple #33178B and Reverse purple #9279FB flat planes; nib and shaft Gold #E8C078; outlines Ink #171928; fold Muted lavender #B5ACD4. Teal #1FA6A8 used only as a thin directional edge along page fold, subordinate to purple. Gold only on pen. Flat upright mark, no gradients, glow, glass, shadows, texture, sparkles or extra symbols. No official Hunter OPS wordmark or H/bracket logo. Transparent exterior, safe margins and strong small-size silhouette. Soft rounded flat illustration: gently rounded page corners and rounded purple feather lobes, restrained two-tone layers."
+    },
+    {
+      "name": "04-outline",
+      "prompt": "Edit attached image into a standalone Windows 11 PDF app logo concept, 1024 square transparent canvas. Keep ONLY the blank folded page and diagonal feather/fountain quill elements. REMOVE crown, horizontal lines, blue rounded tile, background, lettering and all other objects. Preserve recognizable page behind quill and nib at bottom. Hunter OPS exact brand: page Paper #F5F6FA with white #FFFFFF; feather Logo purple #33178B and Reverse purple #9279FB flat planes; nib and shaft Gold #E8C078; outlines Ink #171928; fold Muted lavender #B5ACD4. Teal #1FA6A8 used only as a thin directional edge along page fold, subordinate to purple. Gold only on pen. Flat upright mark, no gradients, glow, glass, shadows, texture, sparkles or extra symbols. No official Hunter OPS wordmark or H/bracket logo. Transparent exterior, safe margins and strong small-size silhouette. Strong Ink outline around page and simplified feather, crisp gold nib slit, editorial linework with no interior decoration on paper."
+    },
+    {
+      "name": "05-compact",
+      "prompt": "Edit attached image into a standalone Windows 11 PDF app logo concept, 1024 square transparent canvas. Keep ONLY the blank folded page and diagonal feather/fountain quill elements. REMOVE crown, horizontal lines, blue rounded tile, background, lettering and all other objects. Preserve recognizable page behind quill and nib at bottom. Hunter OPS exact brand: page Paper #F5F6FA with white #FFFFFF; feather Logo purple #33178B and Reverse purple #9279FB flat planes; nib and shaft Gold #E8C078; outlines Ink #171928; fold Muted lavender #B5ACD4. Teal #1FA6A8 used only as a thin directional edge along page fold, subordinate to purple. Gold only on pen. Flat upright mark, no gradients, glow, glass, shadows, texture, sparkles or extra symbols. No official Hunter OPS wordmark or H/bracket logo. Transparent exterior, safe margins and strong small-size silhouette. Compact balanced flat silhouette: broad shorter feather overlaps right third of page, oversized clear gold nib, simplified fold and fewer feather cuts for taskbar readability."
+    }
+  ]
+}

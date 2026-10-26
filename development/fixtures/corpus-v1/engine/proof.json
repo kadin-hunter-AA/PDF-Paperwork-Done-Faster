@@ -1,0 +1,57 @@
+{
+  "engine": "PDFium chromium/8086",
+  "runtime": "10.0.12",
+  "passed": [
+    "create/save",
+    "open",
+    "enumerate text and images",
+    "replace existing text",
+    "close/reopen",
+    "text persistence",
+    "render",
+    "image move/resize/replace/delete",
+    "highlight and ink creation/modification",
+    "page reorder/merge"
+  ],
+  "complex": {
+    "rotatedPage": true,
+    "sharedImageIsolation": true,
+    "nestedDirectTextPersistence": false,
+    "knownSimpleFormReplacement": true
+  },
+  "fonts": {
+    "EmbeddedEdit": true,
+    "RealSubset": true,
+    "SubsetEdit": true,
+    "MissingGlyphDirectEdit": false,
+    "MissingGlyphFontReplacement": true,
+    "FullFontBytes": 1045720,
+    "SubsetFontBytes": 16752,
+    "FontSha256": "B3658EADAE55E682B5F69EB64C439C1ECC8F196C0BB8D4756D145D13BC86476A"
+  },
+  "fixtureSha256": {
+    "complex-direct-edit.pdf": "2117EE218E92A388AD1FAE0F38B943B9EF2A4530036DA847D5D6461F4667E93C",
+    "complex-edited.pdf": "3C25AF462760C37D88D741C49CB6FCAFAA9BAD5B783B5D228E4A479ADFCFD25C",
+    "complex-original.pdf": "D3227665C9B295C7B4276EECA853B65595BF6D7D9721201BE0F28C88F19766CE",
+    "edited.pdf": "9BB290EF32A898D88AF8A66955973CB9B9F44332497621DF52DCDB9BEFB56021",
+    "font-embedded-edited.pdf": "94A41526A7B6208713E0D5F90AE08908C1C70C03BE54D1D71EB75D2CBF5A3515",
+    "font-embedded-original.pdf": "59A709D8A38F88206AD980B3CBD81E8D201BCEFE3BC9E742EFAB39449DDFFDEF",
+    "font-missing-direct.pdf": "1E68F426FF29AA4660A9778CA17E1F95E847348E465CD88D53D12712E108249F",
+    "font-missing-reembedded.pdf": "91F7543FA420C1266AC429E1999A66CB7ADF6AA3E7A226E191A5FABA8F363BF0",
+    "font-subset-edited.pdf": "C0D73275F13C1F1B11C56327891AACBF4C2F227F940DB9FE9BFA66373037C42C",
+    "font-subset-original.pdf": "848A11F37703DD17E2318B0784E928E33B9791BABCE9A2D1AAA906D22525AE88",
+    "objects-edited.pdf": "8AA1125EAE9C7F3DFCA830EAC7DB803C199E70FEF361C7E704A08ABF700850F5",
+    "objects-original.pdf": "DB00757FB1EEB855270E5D146B5123454758A29CC4713A40218F5BA64B49E500",
+    "original.pdf": "2A3EBAF4EC326B95930A33FDC3670C918BA91E912339E62CE3D7308F27BC18CA",
+    "page-merge-source.pdf": "8175563600A455FE69DE13A429E459225D1661A7AAB1F5C984C264E774084A2F",
+    "page-reordered-merged.pdf": "68A2310335878251B73F97019AC3B8478CD88199178E0283C9F748518ADEDBBF",
+    "page-source.pdf": "224FCCC180863CF90E6061A70A4E8A04C8A7CB765DC5EE9AD0A7C7D30B281578"
+  },
+  "pending": [
+    "independent viewer for new font and complex cases",
+    "resolve any unsupported capabilities reported above"
+  ],
+  "acceptanceGate": "INCOMPLETE",
+  "original": "<original-mirror>\\development\\fixtures\\corpus-v1\\engine\\original.pdf",
+  "edited": "<original-mirror>\\development\\fixtures\\corpus-v1\\engine\\edited.pdf"
+}

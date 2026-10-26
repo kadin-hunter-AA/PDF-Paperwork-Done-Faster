@@ -1,0 +1,192 @@
+{
+  "status": "PARTIAL_CORPUS",
+  "passed": [
+    "layout extraction",
+    "image-only scan classification",
+    "mixed pages",
+    "500-page random access",
+    "malformed rejection",
+    "existing engine cases"
+  ],
+  "fixtures": [
+    {
+      "File": "layout-columns-table.pdf",
+      "Pages": 1,
+      "Purpose": "Columns, table, nonwhite background, overlapping content",
+      "Expected": "All 16 column lines and 12 cell labels extracted; visual overlap intentional.",
+      "Sha256": "1980F141AE3160F4899DE09F2615FB08187890BCC213455D868231CCA70B6439",
+      "License": "Project-generated synthetic fixture"
+    },
+    {
+      "File": "scan-image-only.pdf",
+      "Pages": 1,
+      "Purpose": "Synthetic scan representation (raster bars, not real OCR sample)",
+      "Expected": "One image; no extractable text. OCR disabled until P1.",
+      "Sha256": "B1070D9DF507A4ED9C4E9E1B2B9D490CF48EF5F4A7CA0FC5E06EA0141420FDCB",
+      "License": "Project-generated synthetic fixture"
+    },
+    {
+      "File": "mixed-digital-scan.pdf",
+      "Pages": 2,
+      "Purpose": "Mixed digital and image-only pages",
+      "Expected": "Page 1 searchable, page 2 image-only.",
+      "Sha256": "85532BD4AF165CCA00B9A0A17D663F36B82B1A40C528AC76D24FFA03A5AB7D96",
+      "License": "Project-generated synthetic fixture"
+    },
+    {
+      "File": "large-500-pages.pdf",
+      "Pages": 500,
+      "Purpose": "Large-file navigation fixture",
+      "Expected": "500 pages; pages 1, 250, 500 readable; render only requested last page.",
+      "Sha256": "F2DA856BED1BA5E6C1AFD91B13C6D96DDE103D8DF860A772B3ED0F6070432F9D",
+      "License": "Project-generated synthetic fixture"
+    },
+    {
+      "File": "malformed.pdf",
+      "Pages": null,
+      "Purpose": "Invalid-file rejection",
+      "Expected": "Open must fail safely; deliberately not opened in the viewer.",
+      "Sha256": "90C3D38D881237EB21F0123071DBD393137C4661149CC6ED3FE524AB476A8418",
+      "License": "Project-generated synthetic fixture"
+    },
+    {
+      "File": "engine-cases\\complex-direct-edit.pdf",
+      "Pages": null,
+      "Purpose": "Engine capability fixture",
+      "Expected": "See FONT-COMPLEX-RESULTS.md and NESTED-REPLACEMENT.md; direct negative cases are deliberate.",
+      "Sha256": "B1161323119423F28B56FB045864EE4AE8C8DE0EA5A043770D164FB41BE5E12F",
+      "License": "Project-generated synthetic fixture"
+    },
+    {
+      "File": "engine-cases\\complex-edited.pdf",
+      "Pages": null,
+      "Purpose": "Engine capability fixture",
+      "Expected": "See FONT-COMPLEX-RESULTS.md and NESTED-REPLACEMENT.md; direct negative cases are deliberate.",
+      "Sha256": "BE12AFE7BCDEE6B7674CEA8D496CC050FD9937F17F3F931EBC87A8DCFF3F0FF0",
+      "License": "Project-generated synthetic fixture"
+    },
+    {
+      "File": "engine-cases\\complex-original.pdf",
+      "Pages": null,
+      "Purpose": "Engine capability fixture",
+      "Expected": "See FONT-COMPLEX-RESULTS.md and NESTED-REPLACEMENT.md; direct negative cases are deliberate.",
+      "Sha256": "D3227665C9B295C7B4276EECA853B65595BF6D7D9721201BE0F28C88F19766CE",
+      "License": "Project-generated synthetic fixture"
+    },
+    {
+      "File": "engine-cases\\font-embedded-edited.pdf",
+      "Pages": null,
+      "Purpose": "Engine capability fixture",
+      "Expected": "See FONT-COMPLEX-RESULTS.md and NESTED-REPLACEMENT.md; direct negative cases are deliberate.",
+      "Sha256": "5301CFFFA07D1153CEABD8DA3429B55B8740100C7239361BBE8CC9C6E456BAA1",
+      "License": "Local Windows font embedded: redistribution review required"
+    },
+    {
+      "File": "engine-cases\\font-embedded-original.pdf",
+      "Pages": null,
+      "Purpose": "Engine capability fixture",
+      "Expected": "See FONT-COMPLEX-RESULTS.md and NESTED-REPLACEMENT.md; direct negative cases are deliberate.",
+      "Sha256": "02ABA4EDFF892E0B65EF5D2D6A9A007D71DFCB31DC292303FBED799B97808C86",
+      "License": "Local Windows font embedded: redistribution review required"
+    },
+    {
+      "File": "engine-cases\\font-missing-direct.pdf",
+      "Pages": null,
+      "Purpose": "Engine capability fixture",
+      "Expected": "See FONT-COMPLEX-RESULTS.md and NESTED-REPLACEMENT.md; direct negative cases are deliberate.",
+      "Sha256": "1DC3B8FF12AF8EA5FE2DB21602396DBE9535E13275B8B2E07A460AAD9E7E8B38",
+      "License": "Local Windows font embedded: redistribution review required"
+    },
+    {
+      "File": "engine-cases\\font-missing-reembedded.pdf",
+      "Pages": null,
+      "Purpose": "Engine capability fixture",
+      "Expected": "See FONT-COMPLEX-RESULTS.md and NESTED-REPLACEMENT.md; direct negative cases are deliberate.",
+      "Sha256": "D90528D7CBFDA7B75139B3B9FE2EA3E59F3A478CF6E8787EA9E940675BFE5406",
+      "License": "Local Windows font embedded: redistribution review required"
+    },
+    {
+      "File": "engine-cases\\font-subset-edited.pdf",
+      "Pages": null,
+      "Purpose": "Engine capability fixture",
+      "Expected": "See FONT-COMPLEX-RESULTS.md and NESTED-REPLACEMENT.md; direct negative cases are deliberate.",
+      "Sha256": "E036135078FEB134FB14D95C08B513553714932F88D85606F55393AC9DF1B6D5",
+      "License": "Local Windows font embedded: redistribution review required"
+    },
+    {
+      "File": "engine-cases\\font-subset-original.pdf",
+      "Pages": null,
+      "Purpose": "Engine capability fixture",
+      "Expected": "See FONT-COMPLEX-RESULTS.md and NESTED-REPLACEMENT.md; direct negative cases are deliberate.",
+      "Sha256": "64C8B11A41EAE574B2DDA6A559842B2C2CC0D07E7DBC6EE56304F0FCE5C5F8AC",
+      "License": "Local Windows font embedded: redistribution review required"
+    },
+    {
+      "File": "engine-cases\\objects-edited.pdf",
+      "Pages": null,
+      "Purpose": "Engine capability fixture",
+      "Expected": "See FONT-COMPLEX-RESULTS.md and NESTED-REPLACEMENT.md; direct negative cases are deliberate.",
+      "Sha256": "A89E2CB1F32A68572DACD61E5AC4FECABDB9DE40A7B86ED112AC13829AE8A86E",
+      "License": "Project-generated synthetic fixture"
+    },
+    {
+      "File": "engine-cases\\objects-original.pdf",
+      "Pages": null,
+      "Purpose": "Engine capability fixture",
+      "Expected": "See FONT-COMPLEX-RESULTS.md and NESTED-REPLACEMENT.md; direct negative cases are deliberate.",
+      "Sha256": "46B1B55EE2F639D4E387FE7FB21F92A199B7CD237DDD51484EFE962BECC56732",
+      "License": "Project-generated synthetic fixture"
+    },
+    {
+      "File": "engine-cases\\page-merge-source.pdf",
+      "Pages": null,
+      "Purpose": "Engine capability fixture",
+      "Expected": "See FONT-COMPLEX-RESULTS.md and NESTED-REPLACEMENT.md; direct negative cases are deliberate.",
+      "Sha256": "5D5C8C7D594DD9DF13494132E5263AA371D24E06C31B17829490733161BAED0F",
+      "License": "Project-generated synthetic fixture"
+    },
+    {
+      "File": "engine-cases\\page-reordered-merged.pdf",
+      "Pages": null,
+      "Purpose": "Engine capability fixture",
+      "Expected": "See FONT-COMPLEX-RESULTS.md and NESTED-REPLACEMENT.md; direct negative cases are deliberate.",
+      "Sha256": "6A6A9DE579FEB6EC53149F1740BE73F9D780F32B3B5A6AD26FA0A657616CA126",
+      "License": "Project-generated synthetic fixture"
+    },
+    {
+      "File": "engine-cases\\page-source.pdf",
+      "Pages": null,
+      "Purpose": "Engine capability fixture",
+      "Expected": "See FONT-COMPLEX-RESULTS.md and NESTED-REPLACEMENT.md; direct negative cases are deliberate.",
+      "Sha256": "27D3A8473598A4940A6AE8E2C644598BAD5B9B626CC73EBED1F1979020758BD7",
+      "License": "Project-generated synthetic fixture"
+    }
+  ],
+  "benchmark": {
+    "creationMs": 1152,
+    "accessMs": 40,
+    "workingSetBytes": 46833664,
+    "note": "Single-run harness measurements; not UI performance acceptance"
+  },
+  "fontResults": {
+    "EmbeddedEdit": true,
+    "RealSubset": true,
+    "SubsetEdit": true,
+    "MissingGlyphDirectEdit": false,
+    "MissingGlyphFontReplacement": true,
+    "FullFontBytes": 1045720,
+    "SubsetFontBytes": 16752,
+    "FontSha256": "B3658EADAE55E682B5F69EB64C439C1ECC8F196C0BB8D4756D145D13BC86476A"
+  },
+  "directNested": false,
+  "pending": [
+    "real OCR scan",
+    "password-protected documents",
+    "forms/signatures/bookmarks/links/attachments/layers",
+    "ligatures and absent Unicode maps",
+    "transparency/clipping/page-box variants",
+    "licensed public fixtures",
+    "complete per-P0 acceptance mapping",
+    "independent viewing of new corpus cases"
+  ]
+}

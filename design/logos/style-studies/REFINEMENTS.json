@@ -1,0 +1,26 @@
+{
+  "tool": "built-in image_gen",
+  "mode": "fresh generation from described chosen composition for stronger style separation",
+  "refinements": [
+    [
+      "minimal-line-2",
+      "Create a refined HYPER MINIMAL LINE ART logo: just a thin single purple continuous quill contour across an open folded rectangular page contour. No filled page. Transparent inside and outside. Feather formed from two fine elegant lines and three short barbs, tiny gold outlined fountain nib. Uniform delicate 3px conceptual line weight on 1024 master. No thick strokes, no 3D, no shading, no gradients. Purple #33178B, gold #E8C078, teal #1FA6A8 tiny fold. Clean grown-up architectural symbol."
+    ],
+    [
+      "minimal-line-3",
+      "Create a sophisticated HYPER MINIMAL LINE ART icon: a folded blank document outlined in Ink #171928 with a diagonal sparse feather drawn using just a purple #33178B spine and 4 hairline curved barbs, ending in a small gold #E8C078 outlined nib. Entire page and feather interiors transparent. Fine uniform linework, large negative space. No fills, no shading, no 3D, no gradients, no heavy cartoon strokes."
+    ],
+    [
+      "retrofuturist-1",
+      "Create a RETROFUTURIST 1970s Swiss industrial graphic logo of blank folded ivory page behind diagonal purple feather terminating in gold fountain nib. Flat screenprint-like vector geometry: stepped aerodynamic feather lobes, precise parallel inset contours, sharply chamfered fold. Purple #33178B, lavender #9279FB, ivory #F5F6FA, gold #E8C078, tiny teal seam #1FA6A8. ZERO 3D, ZERO gradients, no photographic materials, no thick cartoon outlines. Mature retro machinery graphic."
+    ],
+    [
+      "retrofuturist-2",
+      "Create a RETROFUTURIST 1980s technical emblem of a blank folded document and diagonal purple feather/gold fountain nib. Feather is an aerodynamic sequence of three angular tapered fins, page fold a clean triangular chamfer, repeated thin purple contour inset only within feather. Flat precise aerospace manual vector-art feeling. Purple #33178B, lavender #9279FB, ivory #F5F6FA, gold #E8C078, tiny teal seam #1FA6A8. No 3D or gradients, no neon, no cartoon strokes."
+    ],
+    [
+      "retrofuturist-3",
+      "Create a RETROFUTURIST Art Deco space-age logo of blank folded ivory page behind a diagonal purple feather and gold fountain nib. Symmetrical feather elongated with elegant stepped fan geometry and two fine parallel gold inset lines, architectural page fold. Mature luxury streamline industrial aesthetic in flat precise shapes. Purple #33178B, lavender #9279FB, ivory #F5F6FA, gold #E8C078; tiny teal fold edge. No 3D, no gradients, no heavy black outlines."
+    ]
+  ]
+}

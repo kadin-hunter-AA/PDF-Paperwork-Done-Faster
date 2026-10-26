@@ -1,0 +1,7 @@
+# Windows icon exports
+
+`selected-pdf-quill.png` is the immutable source. Run `powershell.exe -STA -File design/logos/windows/export-icons.ps1` from the project root to make exact-size transparent PNGs and a multi-resolution ICO under `development/App.Desktop/Assets`. The script preserves colors and letter geometry. It clears only 8-connected alpha components below 8 that are detached from every retained-alpha edge pixel and contain at most 64 pixels; edge-connected antialiasing is preserved.
+
+The PNG exports cover 16, 20, 24, 30, 32, 36, 40, 48, 60, 64, 72, 80, 96, 128, 150 and 256 pixels. The ICO embeds the exact 16, 20, 24, 32, 40, 48, 64, 128 and 256 pixel PNG payloads, including sizes useful at 125% and 150% scaling. There is no MSIX package or compiled installer in this project.
+
+`python design/logos/windows/audit-icons.py` reports alpha-band counts and bounds, verifies the master keeps source RGB unchanged and changes alpha only in eligible components, validates ICO frame headers/ranges and exact PNG payload matches, and creates `icon-size-review.png` with native-size exports on light and dark backgrounds. It also writes `icon-audit-metrics.json` with metrics and SHA256 hashes for the source, master, exporter, audit script and all exports. Quantitative findings and remaining limits are recorded in `ICON-ACCEPTANCE.md`. This is asset evidence only; it does not establish installed-shell rendering or clean-machine package acceptance.

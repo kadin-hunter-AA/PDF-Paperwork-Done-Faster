@@ -1,0 +1,7 @@
+tools/dotnet/
+tools/python-packages/
+tools/signing-packages/
+native/
+**/bin/
+**/obj/
+artifacts/

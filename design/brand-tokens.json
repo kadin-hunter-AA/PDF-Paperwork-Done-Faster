@@ -1,0 +1,54 @@
+{
+  "status": "authoritative user-supplied brand; draft product design",
+  "source": "User-provided Hunter OPS brand specification, October 12, 2026",
+  "brandName": "Hunter OPS",
+  "wordmark": "HUNTER OPS",
+  "colors": {
+    "ink": "#171928",
+    "paper": "#F5F6FA",
+    "white": "#FFFFFF",
+    "logoPurple": "#33178B",
+    "reversePurple": "#9279FB",
+    "teal": "#1FA6A8",
+    "gold": "#E8C078",
+    "mutedLavender": "#B5ACD4",
+    "mutedInk": "#5A5470"
+  },
+  "typography": {
+    "stack": [
+      "Avenir Next",
+      "Avenir",
+      "Segoe UI",
+      "system-ui",
+      "Helvetica Neue",
+      "Arial",
+      "sans-serif"
+    ],
+    "headlineWeight": 600,
+    "bodyWeight": 400,
+    "labelWeight": 500,
+    "bodySize": 18,
+    "bodyLineHeight": 1.6
+  },
+  "minimumInteractiveTarget": 44,
+  "effects": {
+    "gradients": false,
+    "glow": false,
+    "glass": false,
+    "decorativeColorScatter": false
+  },
+  "primaryAction": {
+    "background": "#1FA6A8",
+    "foreground": "#171928"
+  },
+  "productIcon": {
+    "feather": [
+      "#33178B",
+      "#9279FB"
+    ],
+    "nib": "#E8C078",
+    "background": "transparent",
+    "reference": "logos/selected-pdf-quill-2026-10-22.png",
+    "silhouette": "PDF letter strokes form feather; no paper or background tile"
+  }
+}

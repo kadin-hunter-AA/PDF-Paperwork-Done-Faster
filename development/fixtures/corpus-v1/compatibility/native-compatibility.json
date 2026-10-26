@@ -1,0 +1,8 @@
+{
+  "passes": [
+    "interactive-features: open/save/reopen/render pixels unchanged",
+    "graphics-boxes: open/save/reopen/render pixels unchanged",
+    "AES256 missing/wrong password rejected; correct password and save/reopen succeed"
+  ],
+  "status": "PROTOTYPE_COMPATIBILITY_CHECKS_PASSED"
+}

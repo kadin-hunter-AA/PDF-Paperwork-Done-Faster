@@ -1,0 +1,561 @@
+"""Copy-on-write mapped text editing for the isolated application companion.
+
+PDFium 8086 does not serialize ordinary nested text mutations. Keep all graphics
+operators and form dictionaries, and replace one text-show operation instead.
+The original engine proof remains in EngineProof/nested_text.py. This module
+adds bounded inspection and private-candidate publication for product use.
+pypdf is pinned because its font-map helpers are private.
+"""
+from __future__ import annotations
+
+import hashlib
+import io
+import json
+import math
+import os
+from pathlib import Path
+import uuid
+
+import pypdf
+from pypdf import PdfReader, PdfWriter
+from pypdf.errors import DependencyError
+from pypdf._cmap import build_char_map_from_dict
+from pypdf._codecs.core_fontmetrics import CORE_FONT_METRICS
+from pypdf._codecs import charset_encoding
+from pypdf.generic import (
+    ArrayObject, ByteStringObject, ContentStream, DecodedStreamObject,
+    DictionaryObject, FloatObject, NameObject, NullObject, TextStringObject,
+)
+
+
+class UnsupportedEdit(ValueError):
+    pass
+
+
+def require(ok, message):
+    if not ok:
+        raise UnsupportedEdit(message)
+
+
+def number(value):
+    value = float(value)
+    require(math.isfinite(value), "Non-finite PDF number")
+    return value
+
+
+SHOW = {b"Tj", b"TJ", b"'", b'"'}
+STRINGS = (ByteStringObject, TextStringObject)
+
+
+class FontCodec:
+    """Only encode glyphs with known mappings AND known horizontal metrics."""
+    def __init__(self, font):
+        self.font = font
+        subtype = font.get("/Subtype")
+        require(subtype in ("/Type1", "/TrueType", "/Type0"), "Unsupported font type")
+        self.cid = subtype == "/Type0"
+        if self.cid:
+            require(font.get("/Encoding") == "/Identity-H" and "/ToUnicode" in font,
+                    "CID edits require Identity-H and a ToUnicode map")
+        _, _, encoding, mapping = build_char_map_from_dict(200, font)
+        self.decode_map = {}
+        if self.cid:
+            # For Identity-H the CMap source is a two-byte CID, not a Unicode codepoint.
+            require(mapping.get(-1) == 2, "Unsupported CID code length")
+            for code, text in mapping.items():
+                if isinstance(code, str) and len(code) == 1:
+                    self.decode_map[ord(code)] = text
+        else:
+            if encoding == "charmap":
+                if str(font.get("/BaseFont", ""))[1:] in CORE_FONT_METRICS and not mapping:
+                    encoding = dict(enumerate(charset_encoding["/StandardEncoding"]))
+                elif mapping:
+                    encoding = {ord(c): c for c in mapping if isinstance(c, str) and len(c) == 1}
+            require(isinstance(encoding, dict), "Unsupported simple font encoding")
+            for code, char in encoding.items():
+                if 0 <= code <= 255:
+                    self.decode_map[code] = mapping.get(char, char)
+        self.widths = {}
+        self.default_width = None
+        if self.cid:
+            descendant = font["/DescendantFonts"][0].get_object()
+            self.default_width = number(descendant.get("/DW", 1000))
+            entries = descendant["/W"] if "/W" in descendant else []
+            i = 0
+            while i < len(entries):
+                start = int(entries[i]); following = entries[i + 1].get_object()
+                if isinstance(following, ArrayObject):
+                    for offset, width in enumerate(following):
+                        self.widths[start + offset] = number(width)
+                    i += 2
+                else:
+                    end = int(following)
+                    require(0 <= start <= end <= 65535, "Invalid CID width range")
+                    for code in range(start, end + 1):
+                        self.widths[code] = number(entries[i + 2])
+                    i += 3
+        elif "/Widths" in font:
+            start = int(font["/FirstChar"])
+            self.widths = {start + i: number(w) for i, w in enumerate(font["/Widths"])}
+        else:
+            metrics = CORE_FONT_METRICS.get(str(font.get("/BaseFont", ""))[1:])
+            require(metrics is not None, "Font has no reliable width table")
+            require(not mapping, "Core font with ToUnicode requires explicit widths")
+            # Core metrics use Unicode keys. Differences and ToUnicode are respected.
+            self.widths = {code: metrics.character_widths[text]
+                           for code, text in self.decode_map.items()
+                           if text in metrics.character_widths}
+        self.encode_map = {}
+        for code, text in self.decode_map.items():
+            if text and text != "\ufffd" and (code in self.widths or self.cid):
+                self.encode_map.setdefault(text, []).append(code)
+        # Do not guess which glyph to use for an ambiguous Unicode mapping.
+        self.encode_map = {text: codes[0] for text, codes in self.encode_map.items() if len(codes) == 1}
+        self.tokens = sorted(self.encode_map, key=len, reverse=True)
+
+    def codes(self, raw):
+        if self.cid:
+            require(len(raw) % 2 == 0, "Invalid CID string length")
+            return [int.from_bytes(raw[i:i+2], "big") for i in range(0, len(raw), 2)]
+        return list(raw)
+
+    def decode(self, raw):
+        codes = self.codes(raw)
+        require(all(c in self.decode_map for c in codes), "Unmapped original glyph")
+        return "".join(self.decode_map[c] for c in codes)
+
+    def encode(self, text):
+        codes = []
+        offset = 0
+        while offset < len(text):
+            token = next((s for s in self.tokens if text.startswith(s, offset)), None)
+            require(token is not None, "Replacement has absent or ambiguous glyphs")
+            codes.append(self.encode_map[token]); offset += len(token)
+        return b"".join(code.to_bytes(2 if self.cid else 1, "big") for code in codes)
+
+    def advance(self, raw, state):
+        codes = self.codes(raw)
+        require(all(c in self.widths or self.cid for c in codes), "Unknown original glyph width")
+        width = sum(self.widths.get(c, self.default_width) for c in codes)
+        # PDF word spacing applies only to single-byte code 32.
+        spaces = 0 if self.cid else codes.count(32)
+        return width + 1000 / state["size"] * (len(codes) * state["char"] + spaces * state["word"])
+
+
+def stream_for(container, pdf):
+    raw = container if container.get("/Subtype") == "/Form" else container.get("/Contents")
+    require(raw is not None, "Missing content stream")
+    result = ContentStream(raw, pdf)
+    require(len(result.operations) <= 100_000, "Content stream exceeds the supported operation count")
+    return result
+
+
+def resources_for(container, inherited=None):
+    result = container.get("/Resources", inherited)
+    require(result is not None, "Missing resources")
+    return result.get_object()
+
+
+def locate(stream, resources, inherited, kind, ordinal):
+    """Resolve a local operator occurrence and the effective inherited text state."""
+    require(isinstance(ordinal, int) and not isinstance(ordinal, bool) and ordinal >= 0,
+            "Invalid occurrence index")
+    state = inherited.copy()
+    stack, marks = [], []
+    count = 0
+    for index, (args, op) in enumerate(stream.operations):
+        if op == b"q":
+            stack.append(state.copy())
+        elif op == b"Q":
+            require(bool(stack), "Unbalanced graphics state")
+            state = stack.pop()
+        elif op == b"Tf":
+            state["font"] = resources["/Font"][args[0]].get_object()
+            state["size"] = number(args[1])
+        elif op in (b"Tc", b"Tw", b"Tr"):
+            state[{b"Tc": "char", b"Tw": "word", b"Tr": "render"}[op]] = number(args[0])
+        elif op == b"gs":
+            gs = resources["/ExtGState"][args[0]].get_object()
+            if "/Font" in gs:
+                state["font"] = gs["/Font"][0].get_object()
+                state["size"] = number(gs["/Font"][1])
+        elif op in (b"BMC", b"BDC"):
+            prop = args[1] if op == b"BDC" else None
+            if isinstance(prop, NameObject):
+                prop = resources["/Properties"][prop].get_object()
+            marks.append(isinstance(prop, DictionaryObject) and "/ActualText" in prop)
+        elif op == b"EMC":
+            require(bool(marks), "Unbalanced marked content")
+            marks.pop()
+        if op == b'"':
+            state["word"], state["char"] = number(args[0]), number(args[1])
+        if (kind == "form" and op == b"Do") or (kind == "text" and op in SHOW):
+            if count == ordinal:
+                state["actual"] = state.get("actual", False) or any(marks)
+                return index, args, op, state
+            count += 1
+    raise UnsupportedEdit("Target occurrence not found")
+
+
+def clone_resources(resources):
+    result = DictionaryObject(resources)
+    result[NameObject("/XObject")] = DictionaryObject(resources.get("/XObject", {}).get_object()
+                                                     if "/XObject" in resources else {})
+    return result
+
+
+def clone_form(form):
+    result = DecodedStreamObject()
+    # All semantic attributes survive, including BBox, Matrix, Group, OC and metadata.
+    for key, value in form.items():
+        if key not in ("/Length", "/Filter", "/DecodeParms"):
+            result[key] = value
+    result.set_data(form.get_data())
+    return result
+
+
+def set_content(container, stream, writer):
+    data = stream.get_data()
+    if container.get("/Subtype") == "/Form":
+        container.set_data(data)
+    else:
+        content = DecodedStreamObject(); content.set_data(data)
+        container[NameObject("/Contents")] = writer._add_object(content)
+
+
+def walk(pdf, page_index, path, writer=None):
+    require(type(page_index) is int and 0 <= page_index < len(pdf.pages), "Invalid page index")
+    require(isinstance(path, list) and 0 <= len(path) <= 64 and all(type(item) is int and 0 <= item <= 100_000 for item in path), "Invalid text occurrence path")
+    container = pdf.pages[page_index]
+    resources = resources_for(container)
+    state = {"font": None, "size": 0, "char": 0, "word": 0, "render": 0, "actual": False}
+    seen = set()
+    for ordinal in path:
+        stream = stream_for(container, pdf)
+        index, args, _, state = locate(stream, resources, state, "form", ordinal)
+        form = resources["/XObject"][args[0]].get_object()
+        require(form.get("/Subtype") == "/Form", "Selected Do is not a form")
+        identity = id(form)
+        require(identity not in seen, "Cyclic form path")
+        seen.add(identity)
+        child_resources = resources_for(form, resources)
+        if writer:
+            private_resources = clone_resources(resources)
+            xobjects = private_resources["/XObject"]
+            n = 0
+            while NameObject(f"/NestedEdit{n}") in xobjects:
+                n += 1
+            name = NameObject(f"/NestedEdit{n}")
+            form = clone_form(form)
+            form[NameObject("/Resources")] = clone_resources(child_resources)
+            xobjects[name] = writer._add_object(form)
+            container[NameObject("/Resources")] = private_resources
+            operations = stream.operations
+            operations[index] = ([name], b"Do")
+            stream.operations = operations
+            set_content(container, stream, writer)
+        container = form
+        resources = resources_for(container, child_resources)
+    return container, resources, state
+
+
+def text_parts(args, op):
+    return args[0] if op == b"TJ" else [args[-1]]
+
+
+def has_signature(reader):
+    if "/Perms" in reader.root_object:
+        return True
+    acroform = reader.root_object.get("/AcroForm")
+    fields = acroform.get_object()["/Fields"] if acroform and "/Fields" in acroform.get_object() else []
+    pending = [(f, None) for f in fields]
+    seen = set()
+    while pending:
+        require(len(seen) < 10_000, "Form field tree exceeds the supported inspection count")
+        reference, inherited_type = pending.pop()
+        field = reference.get_object()
+        require(id(field) not in seen, "Cyclic form field tree")
+        seen.add(id(field))
+        field_type = field.get("/FT", inherited_type)
+        if field_type == "/Sig" and "/V" in field and not isinstance(field["/V"], NullObject):
+            return True
+        pending.extend((child, field_type) for child in (field["/Kids"] if "/Kids" in field else []))
+    return False
+
+
+def is_tagged(reader):
+    marked = reader.root_object.get("/MarkInfo")
+    return "/StructTreeRoot" in reader.root_object or bool(marked and marked.get_object().get("/Marked"))
+
+
+def marked_content(stream):
+    """Marked-content operators with their operands, in order; tagged edits must keep them identical."""
+    return [(op, repr(args)) for args, op in stream.operations if op in (b"BMC", b"BDC", b"EMC")]
+
+
+def edit(request):
+    require(pypdf.__version__ == "6.1.3", "Nested editor requires pypdf 6.1.3")
+    source = Path(request["source"]).resolve()
+    destination = Path(request["destination"]).resolve()
+    require(source != destination and not destination.exists(), "Destination must be new")
+    require(source.stat().st_size <= 128 * 1024 * 1024, "Mapped text editing supports inputs up to 128 MiB")
+    original = source.read_bytes()
+    source_hash = hashlib.sha256(original).hexdigest()
+    require(source_hash.lower() == request["sourceSha256"].lower(), "Source changed; refresh selection")
+    try:
+        reader = PdfReader(io.BytesIO(original), strict=True)
+    except DependencyError:
+        # pypdf tries the empty password during construction. The nested runtime
+        # intentionally has no crypto backend because encrypted edits are rejected.
+        raise UnsupportedEdit("Encrypted nested edits require a separate password-preserving workflow") from None
+    require(not reader.is_encrypted, "Encrypted nested edits require a separate password-preserving workflow")
+    # Rewriting a signed document would invalidate its signature.
+    require(not has_signature(reader), "Signed nested edits require a separate signature workflow")
+    writer = PdfWriter(clone_from=reader)
+    tagged = is_tagged(reader)
+    page_index, path = request["pageIndex"], request["formPath"]
+    # Structure elements can reference form XObjects, which nested edits clone. Page-level
+    # text is replaced in place, so its marked-content sequence (and MCIDs) is kept exactly.
+    require(not tagged or path == [], "Tagged documents require a structure-tree-aware edit workflow for nested text")
+    leaf, resources, state = walk(writer, page_index, path, writer)
+    stream = stream_for(leaf, writer)
+    marks_before = marked_content(stream) if tagged else None
+    index, args, op, state = locate(stream, resources, state, "text", request["textIndex"])
+    require(state["font"] is not None and state["size"] > 0, "Missing or nonpositive font size")
+    require(0 <= state["render"] <= 3, "Text that changes clipping requires a separate edit workflow")
+    require(state["render"] != 3 or request.get("includeInvisible", False), "Invisible text editing must be explicitly selected")
+    require(not state["actual"], "ActualText replacement requires a tagged-text workflow")
+    codec = FontCodec(state["font"])
+    parts = text_parts(args, op)
+    original_text = "".join(codec.decode(p.original_bytes) for p in parts if isinstance(p, STRINGS))
+    require(original_text == request["expectedText"], "Selected text changed; refresh selection")
+    new_bytes = codec.encode(request["replacement"])
+    old_advance = sum(codec.advance(p.original_bytes, state) if isinstance(p, STRINGS) else -number(p)
+                      for p in parts)
+    require(state["size"] > 0 and old_advance > 0, "Zero-size or reverse-advance text requires a separate edit workflow")
+    leading = []
+    for p in parts:
+        if isinstance(p, STRINGS) and p.original_bytes:
+            break
+        if not isinstance(p, STRINGS):
+            leading.append(p)
+    new_advance = codec.advance(new_bytes, state) - sum(number(p) for p in leading)
+    require(request.get("allowWider", False) or new_advance <= old_advance + 0.01,
+            "Replacement is wider than the selected text run; shorten it or explicitly allow and review wider text")
+    # Keep the next text run at its original position, even when the replacement is longer.
+    replacement = ArrayObject([*leading, ByteStringObject(new_bytes), FloatObject(new_advance - old_advance)])
+    prefix = []
+    if op == b'"':
+        prefix.extend([([args[0]], b"Tw"), ([args[1]], b"Tc")])
+    if op in (b"'", b'"'):
+        prefix.append(([], b"T*"))
+    operations = stream.operations
+    operations[index:index+1] = [*prefix, ([replacement], b"TJ")]
+    stream.operations = operations
+    set_content(leaf, stream, writer)
+    # Write only after all selection, mapping and preservation checks have succeeded.
+    with destination.open("xb") as target:
+        writer.write(target)
+        target.flush()
+        os.fsync(target.fileno())
+    reopened = PdfReader(str(destination), strict=True)
+    final_leaf, final_resources, final_state = walk(reopened, page_index, path)
+    _, final_args, final_op, final_state = locate(stream_for(final_leaf, reopened), final_resources,
+                                                final_state, "text", request["textIndex"])
+    final_codec = FontCodec(final_state["font"])
+    persisted = "".join(final_codec.decode(p.original_bytes) for p in text_parts(final_args, final_op)
+                        if isinstance(p, STRINGS))
+    require(persisted == request["replacement"], "Nested edit failed save/reopen verification")
+    if tagged:
+        require(is_tagged(reopened) and "/StructTreeRoot" in reopened.root_object, "Tagged edit lost the document structure")
+        require(marked_content(stream_for(final_leaf, reopened)) == marks_before, "Tagged edit changed marked content")
+    require(hashlib.sha256(source.read_bytes()).hexdigest() == source_hash, "Source changed during edit")
+    return {"nestedTextPersistence": True, "formDepth": len(path), "sourceSha256": source_hash}
+
+
+def inspect_text(source, page_index, cursor=0, include_invisible=False):
+    """Return bounded, hash-bound operator selections without modifying the PDF."""
+    source = Path(source).resolve()
+    require(source.stat().st_size <= 128 * 1024 * 1024, "Mapped text editing supports inputs up to 128 MiB")
+    original = source.read_bytes()
+    reader = PdfReader(io.BytesIO(original), strict=True)
+    require(not reader.is_encrypted, "Encrypted text inspection is unsupported")
+    require(not has_signature(reader), "Signed text editing requires a separate signature workflow")
+    tagged = is_tagged(reader)
+    require(type(page_index) is int and 0 <= page_index < len(reader.pages), "Invalid page index")
+    require(type(cursor) is int and 0 <= cursor <= 2000, "Invalid text cursor")
+    entries, total, budget, visits = [], 0, 0, 0
+    next_cursor = None
+
+    def visit(container, resources, inherited, path, ancestors):
+        nonlocal total, budget, visits, next_cursor
+        visits += 1
+        require(visits <= 2000, "Page exceeds the supported expanded-form count")
+        require(len(path) <= 64 and id(container) not in ancestors, "Cyclic or excessively nested form")
+        stream = stream_for(container, reader)
+        budget += len(stream.operations)
+        require(budget <= 200_000, "Expanded page content exceeds the inspection limit")
+        text_index = form_index = 0
+        for args, op in stream.operations:
+            if op in SHOW:
+                require(total < 2000, "Page exceeds the supported text-run count")
+                ordinal = total
+                total += 1
+                if ordinal >= cursor:
+                    if len(entries) >= 6:
+                        next_cursor = ordinal
+                        return False
+                    entry = {"FormPath": path, "TextIndex": text_index, "Text": "", "CanEdit": False,
+                             "Reason": "", "FontName": "", "FontSize": 0, "Invisible": False}
+                    try:
+                        _, selected, selected_op, state = locate(stream, resources, inherited, "text", text_index)
+                        require(state["font"] is not None and state["size"] > 0, "Missing or nonpositive font size")
+                        entry["FontName"] = str(state["font"].get("/BaseFont", ""))[:128]
+                        entry["FontSize"] = state["size"]
+                        entry["Invisible"] = state["render"] == 3
+                        codec = FontCodec(state["font"])
+                        text = "".join(codec.decode(p.original_bytes) for p in text_parts(selected, selected_op)
+                                       if isinstance(p, STRINGS))
+                        require(len(text) <= 4000, "Text run exceeds the 4000-character editing limit")
+                        # Bound the encoded transport, including non-ASCII strings.
+                        require(len(json.dumps(text, ensure_ascii=True)) <= 3000, "Text run exceeds the inspection transport limit")
+                        entry["Text"] = text
+                        require(not state["actual"], "ActualText replacement is unsupported")
+                        require(0 <= state["render"] <= 3, "Text that changes clipping is unsupported")
+                        require(state["render"] != 3 or include_invisible, "Enable invisible text explicitly to edit this run")
+                        require(bool(text), "Empty text-show operation")
+                        advance = sum(codec.advance(p.original_bytes, state) if isinstance(p, STRINGS) else -number(p)
+                                      for p in text_parts(selected, selected_op))
+                        require(advance > 0, "Zero or reverse text advance is unsupported")
+                        require(not tagged or not path, "Nested text in tagged documents is unsupported")
+                        entry["CanEdit"] = True
+                    except UnsupportedEdit as error:
+                        entry["Reason"] = str(error)
+                    entries.append(entry)
+                text_index += 1
+            elif op == b"Do":
+                form = resources["/XObject"][args[0]].get_object()
+                if form.get("/Subtype") == "/Form":
+                    _, _, _, state = locate(stream, resources, inherited, "form", form_index)
+                    if not visit(form, resources_for(form, resources), state, [*path, form_index], ancestors | {id(container)}):
+                        return False
+                form_index += 1
+        return True
+
+    page = reader.pages[page_index]
+    visit(page, resources_for(page), {"font": None, "size": 0, "char": 0, "word": 0, "render": 0, "actual": False}, [], set())
+    digest = hashlib.sha256(original).hexdigest()
+    require(hashlib.sha256(source.read_bytes()).hexdigest() == digest, "Source changed during inspection")
+    return {"SourceSHA256": digest, "Page": page_index, "Entries": entries, "NextCursor": next_cursor}
+
+
+def normalized(text):
+    return " ".join(text.split())
+
+
+def find_text(source, page_index, text, occurrence, include_invisible=False):
+    """Resolve the occurrence-th page-level text run whose text matches a clicked object.
+
+    Returns one selection in the InspectText entry shape, so the viewer needs a single
+    companion call per click instead of paging through every run on the page.
+    """
+    require(isinstance(text, str) and 0 < len(text) <= 4000, "Clicked text is missing or too long")
+    require(type(occurrence) is int and 0 <= occurrence < 2000, "Invalid text occurrence")
+    source = Path(source).resolve()
+    require(source.stat().st_size <= 128 * 1024 * 1024, "Mapped text editing supports inputs up to 128 MiB")
+    original = source.read_bytes()
+    reader = PdfReader(io.BytesIO(original), strict=True)
+    require(not reader.is_encrypted, "Encrypted text inspection is unsupported")
+    require(not has_signature(reader), "Signed text editing requires a separate signature workflow")
+    require(type(page_index) is int and 0 <= page_index < len(reader.pages), "Invalid page index")
+    page = reader.pages[page_index]
+    resources = resources_for(page)
+    stream = stream_for(page, reader)
+    require(len(stream.operations) <= 200_000, "Page content exceeds the inspection limit")
+    wanted = normalized(text)
+    # One pass mirroring locate(); the chosen run is then resolved again through locate()
+    # so the returned state is exactly what edit() will see.
+    state = {"font": None, "size": 0, "char": 0, "word": 0, "render": 0, "actual": False}
+    stack, seen, text_index, match, codecs = [], 0, 0, None, {}
+    for args, op in stream.operations:
+        if op == b"q":
+            stack.append(state.copy())
+        elif op == b"Q":
+            require(bool(stack), "Unbalanced graphics state")
+            state = stack.pop()
+        elif op == b"Tf":
+            state["font"] = resources["/Font"][args[0]].get_object()
+            state["size"] = number(args[1])
+        elif op == b"gs":
+            gs = resources["/ExtGState"][args[0]].get_object()
+            if "/Font" in gs:
+                state["font"] = gs["/Font"][0].get_object()
+                state["size"] = number(gs["/Font"][1])
+        elif op in SHOW:
+            decoded = ""
+            if state["font"] is not None:
+                try:
+                    key = id(state["font"])
+                    if key not in codecs:
+                        try: codecs[key] = FontCodec(state["font"])
+                        except UnsupportedEdit: codecs[key] = None
+                    codec = codecs[key]
+                    if codec is None: raise UnsupportedEdit("Unsupported font")
+                    decoded = "".join(codec.decode(p.original_bytes) for p in text_parts(args, op) if isinstance(p, STRINGS))
+                except UnsupportedEdit:
+                    decoded = ""
+            if decoded and normalized(decoded) == wanted:
+                if seen == occurrence:
+                    match = text_index
+                    break
+                seen += 1
+            text_index += 1
+    require(match is not None, "The clicked text could not be matched to a single page-level text run")
+    _, selected, selected_op, resolved = locate(stream, resources, {"font": None, "size": 0, "char": 0, "word": 0, "render": 0, "actual": False}, "text", match)
+    require(resolved["font"] is not None and resolved["size"] > 0, "Missing or nonpositive font size")
+    codec = FontCodec(resolved["font"])
+    run = "".join(codec.decode(p.original_bytes) for p in text_parts(selected, selected_op) if isinstance(p, STRINGS))
+    require(len(json.dumps(run, ensure_ascii=True)) <= 3000, "Text run exceeds the inspection transport limit")
+    entry = {"FormPath": [], "TextIndex": match, "Text": run, "CanEdit": False, "Reason": "",
+             "FontName": str(resolved["font"].get("/BaseFont", ""))[:128], "FontSize": resolved["size"],
+             "Invisible": resolved["render"] == 3}
+    try:
+        require(not resolved["actual"], "ActualText replacement is unsupported")
+        require(0 <= resolved["render"] <= 3, "Text that changes clipping is unsupported")
+        require(resolved["render"] != 3 or include_invisible, "Enable invisible text explicitly to edit this run")
+        advance = sum(codec.advance(p.original_bytes, resolved) if isinstance(p, STRINGS) else -number(p)
+                      for p in text_parts(selected, selected_op))
+        require(advance > 0, "Zero or reverse text advance is unsupported")
+        entry["CanEdit"] = True
+    except UnsupportedEdit as error:
+        entry["Reason"] = str(error)
+    digest = hashlib.sha256(original).hexdigest()
+    require(hashlib.sha256(source.read_bytes()).hexdigest() == digest, "Source changed during inspection")
+    return {"SourceSHA256": digest, "Page": page_index, "Entry": entry}
+
+
+def edit_candidate(request, cancelled=lambda: False):
+    """Validate a private candidate before atomically publishing a new destination."""
+    destination = Path(request["destination"]).resolve()
+    require(not destination.exists(), "Destination must be new")
+    require(isinstance(request.get("replacement"), str) and len(request["replacement"]) <= 4000,
+            "Replacement exceeds the supported text limit")
+    temporary = destination.with_name("." + uuid.uuid4().hex + ".text.pdf")
+    published = False
+    try:
+        require(not cancelled(), "Text edit cancelled")
+        result = edit({**request, "destination": str(temporary)})
+        require(not cancelled(), "Text edit cancelled")
+        digest = hashlib.sha256(temporary.read_bytes()).hexdigest()
+        os.link(temporary, destination)
+        published = True
+        require(not cancelled(), "Text edit cancelled")
+        return {"Applied": True, "OutputSHA256": digest, "SourceSHA256": result["sourceSha256"]}
+    except BaseException:
+        if published:
+            destination.unlink(missing_ok=True)
+        raise
+    finally:
+        temporary.unlink(missing_ok=True)
+
+

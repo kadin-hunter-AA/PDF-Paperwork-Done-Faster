@@ -1,0 +1,52 @@
+[
+  {
+    "page": 0,
+    "subtype": "Highlight",
+    "comment": "Highlight comment"
+  },
+  {
+    "page": 0,
+    "subtype": "Underline",
+    "comment": "Underline comment"
+  },
+  {
+    "page": 0,
+    "subtype": "StrikeOut",
+    "comment": "StrikeOut comment"
+  },
+  {
+    "page": 0,
+    "subtype": "Text",
+    "comment": "Sticky note comment survives save/reopen."
+  },
+  {
+    "page": 0,
+    "subtype": "FreeText",
+    "comment": "Editable text box comment"
+  },
+  {
+    "page": 1,
+    "subtype": "Line",
+    "comment": "Line comment"
+  },
+  {
+    "page": 1,
+    "subtype": "Line",
+    "comment": "Arrow comment"
+  },
+  {
+    "page": 1,
+    "subtype": "Square",
+    "comment": "Rectangle comment"
+  },
+  {
+    "page": 1,
+    "subtype": "Circle",
+    "comment": "Ellipse comment"
+  },
+  {
+    "page": 1,
+    "subtype": "Ink",
+    "comment": "Freehand ink comment"
+  }
+]

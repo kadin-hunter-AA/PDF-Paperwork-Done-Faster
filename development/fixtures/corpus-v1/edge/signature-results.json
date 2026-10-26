@@ -1,0 +1,26 @@
+{
+  "original": {
+    "intact": true,
+    "cryptographicallyValid": true,
+    "trustedInTestContext": true,
+    "bottomLine": true
+  },
+  "tampered": {
+    "intact": false,
+    "cryptographicallyValid": true,
+    "trustedInTestContext": false,
+    "bottomLine": false
+  },
+  "sourceSha256": "4d4a64f59cf990f2e4058d8a9865724c0215cc9715c427d089b37fb27ab218fb",
+  "trust": "Self-signed certificate explicitly trusted only inside this test; not system/public trust",
+  "revocation": "Offline and not established",
+  "timestamp": "No trusted timestamp",
+  "privateKey": "Generated in memory only; not saved",
+  "nativeRewrite": {
+    "intact": false,
+    "cryptographicallyValid": true,
+    "trustedInTestContext": false,
+    "bottomLine": false
+  },
+  "sourceSha256AfterNativeTest": "4d4a64f59cf990f2e4058d8a9865724c0215cc9715c427d089b37fb27ab218fb"
+}

@@ -1,0 +1,7 @@
+{
+  "file": "testing/resources/hello_world.pdf",
+  "sha256": "1E06A6E12329F0C3760680A70BAEA126E040E66E0BF34D3B14A71863096EE1E3",
+  "revision": "e644f8cba5313005b89c16d83d453151a2c8fad5",
+  "repository": "https://pdfium.googlesource.com/pdfium",
+  "license": "LICENSE.pdfium"
+}

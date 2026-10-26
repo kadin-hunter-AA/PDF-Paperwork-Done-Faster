@@ -1,0 +1,29 @@
+{
+  "checks": [
+    "interactive: canonical fields/widgets/appearance, unsigned signature field, link, bookmark, attachment and layer retained",
+    "graphics: crop/trim/bleed, transparency state and clipping retained",
+    "password: encryption and correct password retained",
+    "interactive-saved: canonical fields/widgets/appearance, unsigned signature field, link, bookmark, attachment and layer retained",
+    "graphics-saved: crop/trim/bleed, transparency state and clipping retained",
+    "password-saved: encryption and correct password retained"
+  ],
+  "fixtureSha256": {
+    "graphics-base.pdf": "4c7e8a82efd819a0f1a6bdc4448ad10aa2e9fd37a9126ab0b2e07d3f442bffdb",
+    "graphics-boxes-saved.pdf": "ad76d58a052359b9c520650ffcf285559f62bf4c5eb00ded0e041f4e09ad3331",
+    "graphics-boxes.pdf": "482ee785e98a18d0c12c4f9bb272be22eccc53d9b7c72f2c6e4f716543f234d7",
+    "interactive-base.pdf": "569d4a8a442464705fa333527c8e9e3871ecaaa250fc67cf3ac95d4d2b5f0e6d",
+    "interactive-features-saved.pdf": "48f769d0f40024bb1e65f1ca6cc09e48398f8d0dce906aca5f41c4eb0f1d9db7",
+    "interactive-features.pdf": "f4361e21aa5f88b0a9783bb21f469dbbad2b2cbead9ef09d538458b3bf562cd2",
+    "password-aes256-saved.pdf": "64d8765422f06280754f5e8f682e85f5878ed089b9def29a827cc4bcc5c13307",
+    "password-aes256.pdf": "cdf08c0a34a8c58e6812b7d85b9606462a49a8955ce1ab4de7f84aca1de7c34f",
+    "password-base.pdf": "271c20ef4f767ba0918b26cdbe1006eef38896300240c2aa36c2e37d0a9133a3"
+  },
+  "status": "PASSED",
+  "pending": [
+    "signed certificate fixtures",
+    "ligatures/missing Unicode mappings",
+    "licensed public fixtures",
+    "full P0 feature fixture mapping",
+    "general nested edit persistence"
+  ]
+}

@@ -1,0 +1,6 @@
+# Local staging record; no product dependency integration.
+# Source: https://files.pythonhosted.org/packages/ (PyPI release PyMuPDF 1.28.2)
+PyMuPDF==1.28.2 \
+    --hash=sha256:ebd244918798502d7b4504c90410d1711a4d7675a32584ca30f1bab419ecbffe
+# Official Windows x86-64 abi3 artifact:
+# pymupdf-1.28.2-cp310-abi3-win_amd64.whl

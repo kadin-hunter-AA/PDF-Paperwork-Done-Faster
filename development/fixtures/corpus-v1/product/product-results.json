@@ -1,0 +1,14 @@
+{
+  "status": "PASSED",
+  "checks": [
+    "mixed fonts/sizes/colors/languages text retained",
+    "ten standard annotations and comment contents/appearance streams retained"
+  ],
+  "fixtureSha256": {
+    "markup-base.pdf": "8344743106ed1f79e9c4c9e53d32f05ee0453f3e6d254bfa4f6c0991facfbee3",
+    "markup-gallery-saved.pdf": "521abee055bc78e8752d55377832d36aaa4014df994325f43d45277b38cdbbc7",
+    "markup-gallery.pdf": "9f5b8efe003a674c0c01643ce553e04f0c291c092094613dd7833bea3fa1421a",
+    "mixed-styles-languages-saved.pdf": "c5aee3c0e37f1840122aaa1b2531c2ce39643f6642ddec2b51320d5b9a57fb51",
+    "mixed-styles-languages.pdf": "6bc135c711425f5dab541cc415c28b71270a534ccf3a0d72cddddcdd1644c78e"
+  }
+}

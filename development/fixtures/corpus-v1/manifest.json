@@ -1,0 +1,679 @@
+{
+  "schema": 1,
+  "milestone": 2,
+  "gate": "COMPLETE_CORPUS_ONLY",
+  "fixtureCount": 61,
+  "scenarioCount": 43,
+  "categories": {
+    "simple text/images": [
+      "engine/original.pdf",
+      "engine/objects-original.pdf"
+    ],
+    "mixed fonts/sizes/colors/languages": [
+      "product/mixed-styles-languages.pdf"
+    ],
+    "columns/tables": [
+      "corpus/layout-columns-table.pdf"
+    ],
+    "subsets/ligatures/missing mappings": [
+      "engine/font-subset-original.pdf",
+      "edge/ligature-mapped.pdf",
+      "edge/missing-unicode-map.pdf"
+    ],
+    "nonwhite/overlap": [
+      "corpus/layout-columns-table.pdf"
+    ],
+    "shared images": [
+      "engine/complex-original.pdf"
+    ],
+    "nested/transparency/clipping": [
+      "engine/complex-original.pdf",
+      "compatibility/graphics-boxes.pdf"
+    ],
+    "scans/mixed pages": [
+      "edge/scan-real-text.pdf",
+      "corpus/mixed-digital-scan.pdf"
+    ],
+    "rotation/page boxes": [
+      "engine/complex-original.pdf",
+      "compatibility/graphics-boxes.pdf"
+    ],
+    "passwords": [
+      "compatibility/password-aes256.pdf"
+    ],
+    "forms/signatures/navigation/attachments/layers": [
+      "compatibility/interactive-features.pdf",
+      "edge/signed.pdf"
+    ],
+    "malformed/large": [
+      "corpus/malformed.pdf",
+      "corpus/large-500-pages.pdf"
+    ],
+    "licensed public": [
+      "edge/public-hello-world.pdf"
+    ],
+    "every markup type": [
+      "product/markup-gallery.pdf"
+    ]
+  },
+  "fixtures": [
+    {
+      "path": "compatibility/graphics-base.pdf",
+      "sha256": "4c7e8a82efd819a0f1a6bdc4448ad10aa2e9fd37a9126ab0b2e07d3f442bffdb",
+      "bytes": 1695,
+      "pages": 1,
+      "role": "valid structural fixture",
+      "expected": "Translucent overlap and clipped gold rectangle display; crop/trim/bleed values persist in final fixtures.",
+      "license": "Project synthetic content"
+    },
+    {
+      "path": "compatibility/graphics-boxes-saved.pdf",
+      "sha256": "ad76d58a052359b9c520650ffcf285559f62bf4c5eb00ded0e041f4e09ad3331",
+      "bytes": 1580,
+      "pages": 1,
+      "role": "valid structural fixture",
+      "expected": "Translucent overlap and clipped gold rectangle display; crop/trim/bleed values persist in final fixtures.",
+      "license": "Project synthetic content"
+    },
+    {
+      "path": "compatibility/graphics-boxes.pdf",
+      "sha256": "482ee785e98a18d0c12c4f9bb272be22eccc53d9b7c72f2c6e4f716543f234d7",
+      "bytes": 1685,
+      "pages": 1,
+      "role": "valid structural fixture",
+      "expected": "Translucent overlap and clipped gold rectangle display; crop/trim/bleed values persist in final fixtures.",
+      "license": "Project synthetic content"
+    },
+    {
+      "path": "compatibility/interactive-base.pdf",
+      "sha256": "569d4a8a442464705fa333527c8e9e3871ecaaa250fc67cf3ac95d4d2b5f0e6d",
+      "bytes": 4449,
+      "pages": 1,
+      "role": "valid structural fixture",
+      "expected": "Canonical field/widget value Corpus value, bookmark, internal link, exact attachment and optional layer survive; unsigned signature field has no value.",
+      "license": "Project synthetic content"
+    },
+    {
+      "path": "compatibility/interactive-features-saved.pdf",
+      "sha256": "48f769d0f40024bb1e65f1ca6cc09e48398f8d0dce906aca5f41c4eb0f1d9db7",
+      "bytes": 4956,
+      "pages": 1,
+      "role": "valid structural fixture",
+      "expected": "Canonical field/widget value Corpus value, bookmark, internal link, exact attachment and optional layer survive; unsigned signature field has no value.",
+      "license": "Project synthetic content"
+    },
+    {
+      "path": "compatibility/interactive-features.pdf",
+      "sha256": "f4361e21aa5f88b0a9783bb21f469dbbad2b2cbead9ef09d538458b3bf562cd2",
+      "bytes": 5285,
+      "pages": 1,
+      "role": "valid structural fixture",
+      "expected": "Canonical field/widget value Corpus value, bookmark, internal link, exact attachment and optional layer survive; unsigned signature field has no value.",
+      "license": "Project synthetic content"
+    },
+    {
+      "path": "compatibility/password-aes256-saved.pdf",
+      "sha256": "64d8765422f06280754f5e8f682e85f5878ed089b9def29a827cc4bcc5c13307",
+      "bytes": 2350,
+      "pages": 1,
+      "role": "valid structural fixture",
+      "expected": "Protected copies reject missing/wrong password and accept corpus-user; preserve protection after save. Base is unencrypted setup input.",
+      "license": "Project synthetic content"
+    },
+    {
+      "path": "compatibility/password-aes256.pdf",
+      "sha256": "cdf08c0a34a8c58e6812b7d85b9606462a49a8955ce1ab4de7f84aca1de7c34f",
+      "bytes": 2529,
+      "pages": 1,
+      "role": "valid structural fixture",
+      "expected": "Protected copies reject missing/wrong password and accept corpus-user; preserve protection after save. Base is unencrypted setup input.",
+      "license": "Project synthetic content"
+    },
+    {
+      "path": "compatibility/password-base.pdf",
+      "sha256": "271c20ef4f767ba0918b26cdbe1006eef38896300240c2aa36c2e37d0a9133a3",
+      "bytes": 1469,
+      "pages": 1,
+      "role": "valid structural fixture",
+      "expected": "Protected copies reject missing/wrong password and accept corpus-user; preserve protection after save. Base is unencrypted setup input.",
+      "license": "Project synthetic content"
+    },
+    {
+      "path": "corpus/engine-cases/complex-direct-edit.pdf",
+      "sha256": "b1161323119423f28b56fb045864ee4ae8c8de0ea5a043770d164fb41be5e12f",
+      "bytes": 2102,
+      "pages": 2,
+      "role": "negative capability evidence",
+      "expected": "Negative case: nested text stays original despite attempted mutation; unrelated content survives.",
+      "license": "Project synthetic content"
+    },
+    {
+      "path": "corpus/engine-cases/complex-edited.pdf",
+      "sha256": "be12afe7bcdee6b7674cea8d496cc050fd9937f17f3f931ebc87a8dcff3f0ff0",
+      "bytes": 2002,
+      "pages": 2,
+      "role": "valid structural fixture",
+      "expected": "Rotated page and shared image occurrences remain intact; simple-form replacement output is documented separately.",
+      "license": "Project synthetic content"
+    },
+    {
+      "path": "corpus/engine-cases/complex-original.pdf",
+      "sha256": "d3227665c9b295c7b4276eeca853b65595bf6d7d9721201be0f28c88f19766ce",
+      "bytes": 1650,
+      "pages": 2,
+      "role": "valid structural fixture",
+      "expected": "Rotated page and shared image occurrences remain intact; simple-form replacement output is documented separately.",
+      "license": "Project synthetic content"
+    },
+    {
+      "path": "corpus/engine-cases/font-embedded-edited.pdf",
+      "sha256": "5301cfffa07d1153ceabd8da3429b55b8740100c7239361bbe8cc9c6e456baa1",
+      "bytes": 589461,
+      "pages": 1,
+      "role": "valid structural fixture",
+      "expected": "ABC source, CABCABCAB mapped edit or ABC\u03a9\u0416 reembedded replacement retained, with unrelated text.",
+      "license": "Contains local test font or synthetic signing data; review font terms before redistribution"
+    },
+    {
+      "path": "corpus/engine-cases/font-embedded-original.pdf",
+      "sha256": "02aba4edff892e0b65ef5d2d6a9a007d71dfcb31dc292303fbed799b97808c86",
+      "bytes": 589386,
+      "pages": 1,
+      "role": "valid structural fixture",
+      "expected": "ABC source, CABCABCAB mapped edit or ABC\u03a9\u0416 reembedded replacement retained, with unrelated text.",
+      "license": "Contains local test font or synthetic signing data; review font terms before redistribution"
+    },
+    {
+      "path": "corpus/engine-cases/font-missing-direct.pdf",
+      "sha256": "1dc3b8ff12af8ea5fe2db21602396dbe9535e13275b8b2e07a460aad9e7e8b38",
+      "bytes": 11154,
+      "pages": 1,
+      "role": "negative capability evidence",
+      "expected": "Negative case: direct subset edit loses new characters; do not commit it as a successful edit.",
+      "license": "Contains local test font or synthetic signing data; review font terms before redistribution"
+    },
+    {
+      "path": "corpus/engine-cases/font-missing-reembedded.pdf",
+      "sha256": "d90528d7cbfda7b75139b3b9fe2ea3e59f3a478cf6e8787ea9e940675bfe5406",
+      "bytes": 589717,
+      "pages": 1,
+      "role": "valid structural fixture",
+      "expected": "ABC source, CABCABCAB mapped edit or ABC\u03a9\u0416 reembedded replacement retained, with unrelated text.",
+      "license": "Contains local test font or synthetic signing data; review font terms before redistribution"
+    },
+    {
+      "path": "corpus/engine-cases/font-subset-edited.pdf",
+      "sha256": "e036135078feb134fb14d95c08b513553714932f88d85606f55393ac9df1b6d5",
+      "bytes": 11153,
+      "pages": 1,
+      "role": "valid structural fixture",
+      "expected": "ABC source, CABCABCAB mapped edit or ABC\u03a9\u0416 reembedded replacement retained, with unrelated text.",
+      "license": "Contains local test font or synthetic signing data; review font terms before redistribution"
+    },
+    {
+      "path": "corpus/engine-cases/font-subset-original.pdf",
+      "sha256": "64c8b11a41eae574b2dda6a559842b2c2cc0d07e7dbc6ee56304f0fce5c5f8ac",
+      "bytes": 11078,
+      "pages": 1,
+      "role": "valid structural fixture",
+      "expected": "ABC source, CABCABCAB mapped edit or ABC\u03a9\u0416 reembedded replacement retained, with unrelated text.",
+      "license": "Contains local test font or synthetic signing data; review font terms before redistribution"
+    },
+    {
+      "path": "corpus/engine-cases/objects-edited.pdf",
+      "sha256": "a89e2cb1f32a68572dacd61e5ac4fecabdb9de40a7b86ed112ac13829ae8a86e",
+      "bytes": 1554,
+      "pages": 1,
+      "role": "valid structural fixture",
+      "expected": "Original red images/highlight/ink or documented modified green image/highlight/ink survive save/reopen; unrelated text unchanged.",
+      "license": "Project synthetic content"
+    },
+    {
+      "path": "corpus/engine-cases/objects-original.pdf",
+      "sha256": "46b1b55ee2f639d4e387fe7fb21f92a199b7cd237ddd51484efe962becc56732",
+      "bytes": 1686,
+      "pages": 1,
+      "role": "valid structural fixture",
+      "expected": "Original red images/highlight/ink or documented modified green image/highlight/ink survive save/reopen; unrelated text unchanged.",
+      "license": "Project synthetic content"
+    },
+    {
+      "path": "corpus/engine-cases/page-merge-source.pdf",
+      "sha256": "5d5c8c7d594dd9df13494132e5263aa371d24e06c31b17829490733161baed0f",
+      "bytes": 996,
+      "pages": 1,
+      "role": "valid structural fixture",
+      "expected": "Source page labels are retained; merged output order is page two, page one, merged source page.",
+      "license": "Project synthetic content"
+    },
+    {
+      "path": "corpus/engine-cases/page-reordered-merged.pdf",
+      "sha256": "6a6a9de579feb6ec53149f1740be73f9d780f32b3b5a6ad26fa0a657616ca126",
+      "bytes": 2156,
+      "pages": 3,
+      "role": "valid structural fixture",
+      "expected": "Source page labels are retained; merged output order is page two, page one, merged source page.",
+      "license": "Project synthetic content"
+    },
+    {
+      "path": "corpus/engine-cases/page-source.pdf",
+      "sha256": "27d3a8473598a4940a6ae8e2c644598bad5b9b626cc73ebed1f1979020758bd7",
+      "bytes": 1564,
+      "pages": 2,
+      "role": "valid structural fixture",
+      "expected": "Source page labels are retained; merged output order is page two, page one, merged source page.",
+      "license": "Project synthetic content"
+    },
+    {
+      "path": "corpus/large-500-pages.pdf",
+      "sha256": "f2da856bed1ba5e6c1afd91b13c6d96dde103d8df860a772b3ed0f6070432f9d",
+      "bytes": 296193,
+      "pages": 500,
+      "role": "valid structural fixture",
+      "expected": "500 pages; randomly access pages 1,250,500; render only requested pages.",
+      "license": "Project synthetic content"
+    },
+    {
+      "path": "corpus/layout-columns-table.pdf",
+      "sha256": "1980f141ae3160f4899de09f2615fb08187890bcc213455d868231cca70b6439",
+      "bytes": 1371,
+      "pages": 1,
+      "role": "valid structural fixture",
+      "expected": "Two eight-line columns, 4x3 labeled table, lilac background and intentional overlap retained.",
+      "license": "Project synthetic content"
+    },
+    {
+      "path": "corpus/malformed.pdf",
+      "sha256": "90c3d38d881237eb21f0123071dbd393137c4661149cc6ed3fe524ab476a8418",
+      "bytes": 69,
+      "pages": null,
+      "role": "malformed input: rejection expected",
+      "expected": "Reject open safely; preserve original bytes; present an understandable error.",
+      "license": "Project synthetic content"
+    },
+    {
+      "path": "corpus/mixed-digital-scan.pdf",
+      "sha256": "85532bd4af165cca00b9a0a17d663f36b82b1a40c528ac76d24ffa03a5ab7d96",
+      "bytes": 2556,
+      "pages": 2,
+      "role": "valid structural fixture",
+      "expected": "Two pages: digital layout searchable, second page image-only.",
+      "license": "Project synthetic content"
+    },
+    {
+      "path": "corpus/scan-image-only.pdf",
+      "sha256": "b1070d9df507a4ed9c4e9e1b2b9d490cf48ef5f4a7ca0fc5e06ea0141420fdcb",
+      "bytes": 1592,
+      "pages": 1,
+      "role": "valid structural fixture",
+      "expected": "Image-only pages have visible synthetic raster content and no hidden searchable text.",
+      "license": "Project synthetic content"
+    },
+    {
+      "path": "edge/edge-preview.pdf",
+      "sha256": "7cda040791a55730c2ce3f00c503765cdfddef1d7584326d3d1bbbc6a95ab7c6",
+      "bytes": 76846,
+      "pages": 3,
+      "role": "valid structural fixture",
+      "expected": "Three-page mapped-font, raster-scan and upstream public preview; excluded from signature validity claims.",
+      "license": "Project synthetic content"
+    },
+    {
+      "path": "edge/ligature-mapped-saved.pdf",
+      "sha256": "948e8944f99a4e2eae072358e7adcd86c7dd779819b804e0a8195f092964e61f",
+      "bytes": 43274,
+      "pages": 1,
+      "role": "valid structural fixture",
+      "expected": "Explicit fi ligature and accented/Greek/Cyrillic mappings retain appearance and readable extraction.",
+      "license": "Contains local test font or synthetic signing data; review font terms before redistribution"
+    },
+    {
+      "path": "edge/ligature-mapped.pdf",
+      "sha256": "cbb140c02f026250f4c4b10dd2e96dad003ab0291c4e1add287ec084b8e10584",
+      "bytes": 43523,
+      "pages": 1,
+      "role": "valid structural fixture",
+      "expected": "Explicit fi ligature and accented/Greek/Cyrillic mappings retain appearance and readable extraction.",
+      "license": "Contains local test font or synthetic signing data; review font terms before redistribution"
+    },
+    {
+      "path": "edge/missing-unicode-map-saved.pdf",
+      "sha256": "70f07e375bd5e04ebd2c80ca8885ece650a19cacec6f613f686b32ad64e1c2c3",
+      "bytes": 42479,
+      "pages": 1,
+      "role": "valid structural fixture",
+      "expected": "ToUnicode intentionally absent; appearance retained, text editing rejected or conservatively unsupported.",
+      "license": "Contains local test font or synthetic signing data; review font terms before redistribution"
+    },
+    {
+      "path": "edge/missing-unicode-map.pdf",
+      "sha256": "06c9c411c8c68e0e395bc7bae16cdf30fba793dc6eea21258d92442147b0daf5",
+      "bytes": 43371,
+      "pages": 1,
+      "role": "valid structural fixture",
+      "expected": "ToUnicode intentionally absent; appearance retained, text editing rejected or conservatively unsupported.",
+      "license": "Contains local test font or synthetic signing data; review font terms before redistribution"
+    },
+    {
+      "path": "edge/public-hello-world-saved.pdf",
+      "sha256": "c254ad300c89eecbe6d11b7b07f1728ea4e8dc0c03ccff8a31b60f07242652cb",
+      "bytes": 805,
+      "pages": 1,
+      "role": "valid structural fixture",
+      "expected": "Hello/world and Goodbye/world text retained; intentional missing stream length is tolerated.",
+      "license": "Upstream PDFium: provenance and full license in edge/"
+    },
+    {
+      "path": "edge/public-hello-world.pdf",
+      "sha256": "1e06a6e12329f0c3760680a70baea126e040e66e0bf34d3b14a71863096ee1e3",
+      "bytes": 840,
+      "pages": 1,
+      "role": "valid structural fixture",
+      "expected": "Hello/world and Goodbye/world text retained; intentional missing stream length is tolerated.",
+      "license": "Upstream PDFium: provenance and full license in edge/"
+    },
+    {
+      "path": "edge/scan-real-text-saved.pdf",
+      "sha256": "697a41ceeceb8893bdbd67be99dcb9fab5e1ab267f26edf05fd3301155e9ac07",
+      "bytes": 33871,
+      "pages": 1,
+      "role": "valid structural fixture",
+      "expected": "Image-only pages have visible synthetic raster content and no hidden searchable text.",
+      "license": "Contains local test font or synthetic signing data; review font terms before redistribution"
+    },
+    {
+      "path": "edge/scan-real-text.pdf",
+      "sha256": "ae409a18000027a12bbccc652c9bba4870edd64255c3c029601651057e840ffa",
+      "bytes": 34069,
+      "pages": 1,
+      "role": "valid structural fixture",
+      "expected": "Image-only pages have visible synthetic raster content and no hidden searchable text.",
+      "license": "Contains local test font or synthetic signing data; review font terms before redistribution"
+    },
+    {
+      "path": "edge/signed-saved.pdf",
+      "sha256": "2441be0946fa0321be8df58e9b18f3b988a4b36451ddc86486f26af6838957dd",
+      "bytes": 50575,
+      "pages": 1,
+      "role": "negative capability evidence",
+      "expected": "Native rewrite is a separate copy whose original signature no longer validates.",
+      "license": "Contains local test font or synthetic signing data; review font terms before redistribution"
+    },
+    {
+      "path": "edge/signed-tampered.pdf",
+      "sha256": "9e48da5b30f701ae4676026ab1414a9e34add58268601c99d5be45437e53b3dd",
+      "bytes": 51762,
+      "pages": 1,
+      "role": "negative capability evidence",
+      "expected": "Signature document digest is not intact; never report valid signed document.",
+      "license": "Contains local test font or synthetic signing data; review font terms before redistribution"
+    },
+    {
+      "path": "edge/signed.pdf",
+      "sha256": "4d4a64f59cf990f2e4058d8a9865724c0215cc9715c427d089b37fb27ab218fb",
+      "bytes": 51762,
+      "pages": 1,
+      "role": "valid structural fixture",
+      "expected": "CMS signature is intact in the isolated explicit test-trust context; source bytes remain unchanged.",
+      "license": "Contains local test font or synthetic signing data; review font terms before redistribution"
+    },
+    {
+      "path": "engine/complex-direct-edit.pdf",
+      "sha256": "2117ee218e92a388ad1fae0f38b943b9ef2a4530036da847d5d6461f4667e93c",
+      "bytes": 2102,
+      "pages": 2,
+      "role": "negative capability evidence",
+      "expected": "Negative case: nested text stays original despite attempted mutation; unrelated content survives.",
+      "license": "Project synthetic content"
+    },
+    {
+      "path": "engine/complex-edited.pdf",
+      "sha256": "3c25af462760c37d88d741c49cb6fcafaa9bad5b783b5d228e4a479adfcfd25c",
+      "bytes": 2002,
+      "pages": 2,
+      "role": "valid structural fixture",
+      "expected": "Rotated page and shared image occurrences remain intact; simple-form replacement output is documented separately.",
+      "license": "Project synthetic content"
+    },
+    {
+      "path": "engine/complex-original.pdf",
+      "sha256": "d3227665c9b295c7b4276eeca853b65595bf6d7d9721201be0f28c88f19766ce",
+      "bytes": 1650,
+      "pages": 2,
+      "role": "valid structural fixture",
+      "expected": "Rotated page and shared image occurrences remain intact; simple-form replacement output is documented separately.",
+      "license": "Project synthetic content"
+    },
+    {
+      "path": "engine/edited.pdf",
+      "sha256": "9bb290ef32a898d88af8a66955973cb9b9f44332497621df52dcdb9befb56021",
+      "bytes": 1133,
+      "pages": 1,
+      "role": "valid structural fixture",
+      "expected": "Original or longer text replacement fixture retains its unrelated second line; verify against paired engine output.",
+      "license": "Project synthetic content"
+    },
+    {
+      "path": "engine/font-embedded-edited.pdf",
+      "sha256": "94a41526a7b6208713e0d5f90ae08908c1c70c03be54d1d71eb75d2cbf5a3515",
+      "bytes": 589461,
+      "pages": 1,
+      "role": "valid structural fixture",
+      "expected": "ABC source, CABCABCAB mapped edit or ABC\u03a9\u0416 reembedded replacement retained, with unrelated text.",
+      "license": "Contains local test font or synthetic signing data; review font terms before redistribution"
+    },
+    {
+      "path": "engine/font-embedded-original.pdf",
+      "sha256": "59a709d8a38f88206ad980b3cbd81e8d201bcefe3bc9e742efab39449ddffdef",
+      "bytes": 589386,
+      "pages": 1,
+      "role": "valid structural fixture",
+      "expected": "ABC source, CABCABCAB mapped edit or ABC\u03a9\u0416 reembedded replacement retained, with unrelated text.",
+      "license": "Contains local test font or synthetic signing data; review font terms before redistribution"
+    },
+    {
+      "path": "engine/font-missing-direct.pdf",
+      "sha256": "1e68f426ff29aa4660a9778ca17e1f95e847348e465cd88d53d12712e108249f",
+      "bytes": 11154,
+      "pages": 1,
+      "role": "negative capability evidence",
+      "expected": "Negative case: direct subset edit loses new characters; do not commit it as a successful edit.",
+      "license": "Contains local test font or synthetic signing data; review font terms before redistribution"
+    },
+    {
+      "path": "engine/font-missing-reembedded.pdf",
+      "sha256": "91f7543fa420c1266ac429e1999a66cb7adf6aa3e7a226e191a5faba8f363bf0",
+      "bytes": 589717,
+      "pages": 1,
+      "role": "valid structural fixture",
+      "expected": "ABC source, CABCABCAB mapped edit or ABC\u03a9\u0416 reembedded replacement retained, with unrelated text.",
+      "license": "Contains local test font or synthetic signing data; review font terms before redistribution"
+    },
+    {
+      "path": "engine/font-subset-edited.pdf",
+      "sha256": "c0d73275f13c1f1b11c56327891aacbf4c2f227f940db9fe9bfa66373037c42c",
+      "bytes": 11153,
+      "pages": 1,
+      "role": "valid structural fixture",
+      "expected": "ABC source, CABCABCAB mapped edit or ABC\u03a9\u0416 reembedded replacement retained, with unrelated text.",
+      "license": "Contains local test font or synthetic signing data; review font terms before redistribution"
+    },
+    {
+      "path": "engine/font-subset-original.pdf",
+      "sha256": "848a11f37703dd17e2318b0784e928e33b9791babce9a2d1aaa906d22525ae88",
+      "bytes": 11078,
+      "pages": 1,
+      "role": "valid structural fixture",
+      "expected": "ABC source, CABCABCAB mapped edit or ABC\u03a9\u0416 reembedded replacement retained, with unrelated text.",
+      "license": "Contains local test font or synthetic signing data; review font terms before redistribution"
+    },
+    {
+      "path": "engine/objects-edited.pdf",
+      "sha256": "8aa1125eae9c7f3dfca830eac7db803c199e70fef361c7e704a08abf700850f5",
+      "bytes": 1554,
+      "pages": 1,
+      "role": "valid structural fixture",
+      "expected": "Original red images/highlight/ink or documented modified green image/highlight/ink survive save/reopen; unrelated text unchanged.",
+      "license": "Project synthetic content"
+    },
+    {
+      "path": "engine/objects-original.pdf",
+      "sha256": "db00757fb1eeb855270e5d146b5123454758a29cc4713a40218f5ba64b49e500",
+      "bytes": 1686,
+      "pages": 1,
+      "role": "valid structural fixture",
+      "expected": "Original red images/highlight/ink or documented modified green image/highlight/ink survive save/reopen; unrelated text unchanged.",
+      "license": "Project synthetic content"
+    },
+    {
+      "path": "engine/original.pdf",
+      "sha256": "2a3ebaf4ec326b95930a33fdc3670c918ba91e912339e62ce3d7308f27bc18ca",
+      "bytes": 1036,
+      "pages": 1,
+      "role": "valid structural fixture",
+      "expected": "Original or longer text replacement fixture retains its unrelated second line; verify against paired engine output.",
+      "license": "Project synthetic content"
+    },
+    {
+      "path": "engine/page-merge-source.pdf",
+      "sha256": "8175563600a455fe69de13a429e459225d1661a7aab1f5c984c264e774084a2f",
+      "bytes": 996,
+      "pages": 1,
+      "role": "valid structural fixture",
+      "expected": "Source page labels are retained; merged output order is page two, page one, merged source page.",
+      "license": "Project synthetic content"
+    },
+    {
+      "path": "engine/page-reordered-merged.pdf",
+      "sha256": "68a2310335878251b73f97019ac3b8478cd88199178e0283c9f748518adedbbf",
+      "bytes": 2156,
+      "pages": 3,
+      "role": "valid structural fixture",
+      "expected": "Source page labels are retained; merged output order is page two, page one, merged source page.",
+      "license": "Project synthetic content"
+    },
+    {
+      "path": "engine/page-source.pdf",
+      "sha256": "224fccc180863cf90e6061a70a4e8a04c8a7cb765dc5ee9ad0a7c7d30b281578",
+      "bytes": 1564,
+      "pages": 2,
+      "role": "valid structural fixture",
+      "expected": "Source page labels are retained; merged output order is page two, page one, merged source page.",
+      "license": "Project synthetic content"
+    },
+    {
+      "path": "product/markup-base.pdf",
+      "sha256": "8344743106ed1f79e9c4c9e53d32f05ee0453f3e6d254bfa4f6c0991facfbee3",
+      "bytes": 2312,
+      "pages": 2,
+      "role": "valid structural fixture",
+      "expected": "Final gallery has ten standard editable annotations with comments/appearance streams across two pages; base is unannotated setup input.",
+      "license": "Project synthetic content"
+    },
+    {
+      "path": "product/markup-gallery-saved.pdf",
+      "sha256": "521abee055bc78e8752d55377832d36aaa4014df994325f43d45277b38cdbbc7",
+      "bytes": 12908,
+      "pages": 2,
+      "role": "valid structural fixture",
+      "expected": "Final gallery has ten standard editable annotations with comments/appearance streams across two pages; base is unannotated setup input.",
+      "license": "Project synthetic content"
+    },
+    {
+      "path": "product/markup-gallery.pdf",
+      "sha256": "9f5b8efe003a674c0c01643ce553e04f0c291c092094613dd7833bea3fa1421a",
+      "bytes": 7753,
+      "pages": 2,
+      "role": "valid structural fixture",
+      "expected": "Final gallery has ten standard editable annotations with comments/appearance streams across two pages; base is unannotated setup input.",
+      "license": "Project synthetic content"
+    },
+    {
+      "path": "product/mixed-styles-languages-saved.pdf",
+      "sha256": "c5aee3c0e37f1840122aaa1b2531c2ce39643f6642ddec2b51320d5b9a57fb51",
+      "bytes": 97522,
+      "pages": 1,
+      "role": "valid structural fixture",
+      "expected": "Four languages, multiple font families/sizes/colors and numeric columns retain text and layout.",
+      "license": "Contains local test font or synthetic signing data; review font terms before redistribution"
+    },
+    {
+      "path": "product/mixed-styles-languages.pdf",
+      "sha256": "6bc135c711425f5dab541cc415c28b71270a534ccf3a0d72cddddcdd1644c78e",
+      "bytes": 97855,
+      "pages": 1,
+      "role": "valid structural fixture",
+      "expected": "Four languages, multiple font families/sizes/colors and numeric columns retain text and layout.",
+      "license": "Contains local test font or synthetic signing data; review font terms before redistribution"
+    }
+  ],
+  "evidenceSha256": {
+    "compatibility/graphics-boxes-after.ppm": "489a9c637ee5c3c60697064b378cea6eb8a259b6aaf6b22902456dddedd13a51",
+    "compatibility/graphics-boxes-before.ppm": "489a9c637ee5c3c60697064b378cea6eb8a259b6aaf6b22902456dddedd13a51",
+    "compatibility/independent-compatibility.json": "8712f364d9b187b6362a6d1828f18d2e6298b022adf0d06313b6b11098372fdc",
+    "compatibility/interactive-features-after.ppm": "e216c71d4e11bbd3eb17590e7e778afbd0a13a12d3bcda9a70e0b83283f5eea5",
+    "compatibility/interactive-features-before.ppm": "e216c71d4e11bbd3eb17590e7e778afbd0a13a12d3bcda9a70e0b83283f5eea5",
+    "compatibility/native-compatibility.json": "59c3c5830b0650814c507e52819978499c53468f1203c3701fbfdb984105191f",
+    "compatibility/password-preview.ppm": "61412d01eff5f6503e6be41f8b8f41248581fa496c52ccfa1cf6339b2860cd37",
+    "corpus/corpus.json": "091d0c2f04fe47b0ba784f04fe9e75350088257d8427c0b5ebb1fbbd76c67762",
+    "corpus/engine-cases/complex-page-1.ppm": "a4b47f30c52e5f8dcd3a7abc98edcc1ec8cfc2d593def6eb2e518f03c10d51aa",
+    "corpus/engine-cases/complex-page-2.ppm": "f26227a3fc5cb1986c1ef78a4edfc17046271cae553613d27437e523f8cd0e81",
+    "corpus/engine-cases/complex-resolved.ppm": "8939103591e92f01a35b08775ea72e9711601073eb647556af013f9754fc91c4",
+    "corpus/engine-cases/font-embedded-edited.ppm": "525966289b1cca791e20aa148d87e915e426983a1f98d257223cddcda59b7e7d",
+    "corpus/engine-cases/font-missing-reembedded.ppm": "5ab28af40669ceba157a0c54b37939f45358a1f2538c5b40ae470027f96bc887",
+    "corpus/engine-cases/font-subset-edited.ppm": "525966289b1cca791e20aa148d87e915e426983a1f98d257223cddcda59b7e7d",
+    "corpus/engine-cases/objects-edited.ppm": "588e5063e1b7d38824a738686078587301e1be352d1c61053d42dd243b474d4d",
+    "corpus/large-last-page.ppm": "6d9cd80302bbd02219ecf9d43e3d53dfdd034cfea42d5e2e976a46e8fa79a56b",
+    "corpus/layout.ppm": "c9bba148f5386266c81dd4af8a03f68da53fae0ef4194556c4dfe0b21ad4961d",
+    "corpus/scan.ppm": "979a7466472f81187c42ffd363905d1a84bf59bba7683a98e38269e39b88250e",
+    "edge/edge-results.json": "ceb35f21a85d2b880d37b6f26ef28d598e4f86bca1f169667846eda044147187",
+    "edge/LICENSE.pdfium": "1fe9dea718fbd75cf149adaf4d8a22a4335604d964ddb76d1b45383dec8668c9",
+    "edge/ligature-mapped-after.ppm": "e8d7c909318e13a4f3ca5168ee4492b15de45da2bb461c5d7e76da58d7752794",
+    "edge/ligature-mapped-before.ppm": "e8d7c909318e13a4f3ca5168ee4492b15de45da2bb461c5d7e76da58d7752794",
+    "edge/missing-unicode-map-after.ppm": "e8d7c909318e13a4f3ca5168ee4492b15de45da2bb461c5d7e76da58d7752794",
+    "edge/missing-unicode-map-before.ppm": "e8d7c909318e13a4f3ca5168ee4492b15de45da2bb461c5d7e76da58d7752794",
+    "edge/native-edge-results.json": "29a4f782cb2b17a8b8bf334d2a2f26ddd0b07ea527fd463f6d3deb7d60a97f58",
+    "edge/public-hello-world-after.ppm": "70871a87ea896f263f885217ac48c0e0fefe26cc5a132dec093860f405aaff52",
+    "edge/public-hello-world-before.ppm": "70871a87ea896f263f885217ac48c0e0fefe26cc5a132dec093860f405aaff52",
+    "edge/public-provenance.json": "9905d7086bd958db2b7ffd004ce9db2a631123b79bfa49518254ff03d870e462",
+    "edge/scan-real-text-after.ppm": "6262f281407092a5bd7f877f2b72d696938c56126ef61708ec360f342f28e016",
+    "edge/scan-real-text-before.ppm": "6262f281407092a5bd7f877f2b72d696938c56126ef61708ec360f342f28e016",
+    "edge/scan-text.png": "1bccc5d868d481f76c6c8c0066ea1fcf04947777fcfe707f2fc2dc773abf0d2f",
+    "edge/signature-results.json": "13bff6f24e92f1ac3bcb07ec52d42f049f62b17cc739ca357a58889b4d19c3e1",
+    "edge/signed-after.ppm": "e8d7c909318e13a4f3ca5168ee4492b15de45da2bb461c5d7e76da58d7752794",
+    "edge/signed-before.ppm": "e8d7c909318e13a4f3ca5168ee4492b15de45da2bb461c5d7e76da58d7752794",
+    "edge/test-certificate.der": "2e32472b0d32e2f1a8a5d42a367eab234fcd1e873bd0c33ea8b8eee2d5ce2c6e",
+    "engine/complex-page-1.ppm": "a4b47f30c52e5f8dcd3a7abc98edcc1ec8cfc2d593def6eb2e518f03c10d51aa",
+    "engine/complex-page-2.ppm": "f26227a3fc5cb1986c1ef78a4edfc17046271cae553613d27437e523f8cd0e81",
+    "engine/complex-resolved.ppm": "8939103591e92f01a35b08775ea72e9711601073eb647556af013f9754fc91c4",
+    "engine/edited.ppm": "037b237f88f130ae197f72edc98bd13efc4171c4d1b7c034eccb8c09e228bb20",
+    "engine/font-embedded-edited.ppm": "525966289b1cca791e20aa148d87e915e426983a1f98d257223cddcda59b7e7d",
+    "engine/font-missing-reembedded.ppm": "5ab28af40669ceba157a0c54b37939f45358a1f2538c5b40ae470027f96bc887",
+    "engine/font-subset-edited.ppm": "525966289b1cca791e20aa148d87e915e426983a1f98d257223cddcda59b7e7d",
+    "engine/objects-edited.ppm": "588e5063e1b7d38824a738686078587301e1be352d1c61053d42dd243b474d4d",
+    "engine/proof.json": "8ad4f63b4f5b9ff07f33b00996875ab93dbb0eb0a383edbef5b4a107df95b61f",
+    "product/markup-expectations.json": "7b22737f75462f4a79fb39fdc51e1a240b92c34c3cae7ca4e445345bb5b22733",
+    "product/markup-gallery-0-after.ppm": "10cb128487f68f44e0b41066a9d387f7313ac0540c26693ee59c271d99d8adac",
+    "product/markup-gallery-0-before.ppm": "10cb128487f68f44e0b41066a9d387f7313ac0540c26693ee59c271d99d8adac",
+    "product/markup-gallery-1-after.ppm": "fee8b68aaf463e28c30348ba0996eeaf34678f18a628095f2d8c32513b0b3065",
+    "product/markup-gallery-1-before.ppm": "fee8b68aaf463e28c30348ba0996eeaf34678f18a628095f2d8c32513b0b3065",
+    "product/mixed-styles-languages-0-after.ppm": "e09ee0f2e5ebe1275b2d4e0cbcddb02b1a17e111482ffdf7b3ac382af21ce5ca",
+    "product/mixed-styles-languages-0-before.ppm": "e09ee0f2e5ebe1275b2d4e0cbcddb02b1a17e111482ffdf7b3ac382af21ce5ca",
+    "product/product-results.json": "ce5516dda63d9d03acd6f165a0312d4ad8cd0e27854815ccdbd11311e9870100",
+    "scenarios.json": "b68aebb80bf30727c7f536b254c0c3e142d993c6e74dab6eaf0d730e39ec50cd"
+  },
+  "engine": "PDFium chromium/8086",
+  "python": "3.14.7",
+  "limitations": [
+    "Milestone 1 general nested editing remains unresolved",
+    "43 application behaviors are defined future checks, not passing app tests",
+    "No application/installer/recovery release is claimed",
+    "Signature test trust is isolated and offline"
+  ],
+  "credentials": {
+    "compatibility/password-aes256.pdf": {
+      "user": "corpus-user",
+      "owner": "corpus-owner"
+    }
+  }
+}

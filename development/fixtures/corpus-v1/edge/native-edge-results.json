@@ -1,0 +1,42 @@
+[
+  {
+    "name": "ligature-mapped",
+    "count": 1,
+    "hasExtractableText": true,
+    "ligatureRecognized": true,
+    "renderPreserved": true,
+    "note": "Synthetic fixture capability only"
+  },
+  {
+    "name": "missing-unicode-map",
+    "count": 1,
+    "hasExtractableText": true,
+    "ligatureRecognized": null,
+    "renderPreserved": true,
+    "note": "No editing capability claimed without usable Unicode maps"
+  },
+  {
+    "name": "scan-real-text",
+    "count": 1,
+    "hasExtractableText": false,
+    "ligatureRecognized": null,
+    "renderPreserved": true,
+    "note": "Synthetic fixture capability only"
+  },
+  {
+    "name": "public-hello-world",
+    "count": 1,
+    "hasExtractableText": true,
+    "ligatureRecognized": null,
+    "renderPreserved": true,
+    "note": "Synthetic fixture capability only"
+  },
+  {
+    "name": "signed",
+    "count": 1,
+    "hasExtractableText": true,
+    "ligatureRecognized": null,
+    "renderPreserved": true,
+    "note": "Rewrite is test-only; signature invalidation must be inspected independently"
+  }
+]

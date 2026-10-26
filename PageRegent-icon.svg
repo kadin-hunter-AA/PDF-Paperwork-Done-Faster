@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" role="img" aria-label="PageRegent app icon">
+  <defs>
+    <linearGradient id="tile" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#34466D"/>
+      <stop offset="1" stop-color="#17243D"/>
+    </linearGradient>
+    <filter id="shadow" x="-20%" y="-20%" width="140%" height="150%">
+      <feDropShadow dx="0" dy="5" stdDeviation="5" flood-color="#091324" flood-opacity=".32"/>
+    </filter>
+  </defs>
+  <rect x="8" y="8" width="240" height="240" rx="54" fill="url(#tile)"/>
+  <g filter="url(#shadow)">
+    <path d="M71 40h77l39 39v132a9 9 0 0 1-9 9H71a9 9 0 0 1-9-9V49a9 9 0 0 1 9-9Z" fill="#F8FAFF"/>
+    <path d="M148 41v30a9 9 0 0 0 9 9h29" fill="#DDE5F2"/>
+    <path d="M148 41v30a9 9 0 0 0 9 9h29" fill="none" stroke="#CBD5E5" stroke-width="3" stroke-linejoin="round"/>
+  </g>
+  <path d="m84 111 8-22 20 14 16-27 16 27 20-14 8 22v12H84z" fill="#E8B84D" stroke="#B87D27" stroke-width="3" stroke-linejoin="round"/>
+  <circle cx="92" cy="88" r="5" fill="#FFD978"/>
+  <circle cx="128" cy="76" r="5" fill="#FFD978"/>
+  <circle cx="164" cy="88" r="5" fill="#FFD978"/>
+  <path d="M94 145h68M94 164h68M94 183h48" fill="none" stroke="#71809B" stroke-width="8" stroke-linecap="round"/>
+</svg>

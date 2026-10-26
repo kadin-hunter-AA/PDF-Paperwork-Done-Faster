@@ -1,0 +1,34 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>net10.0-windows</TargetFramework>
+    <UseWPF>true</UseWPF>
+    <Title>PDF - Paperwork Done Faster</Title>
+    <AssemblyTitle>PDF - Paperwork Done Faster</AssemblyTitle>
+    <Product>PDF - Paperwork Done Faster</Product>
+    <Description>PDF - Paperwork Done Faster is a Windows 11 PDF viewer and editor.</Description>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+    <ApplicationIcon>Assets\PdfEditor.ico</ApplicationIcon>
+    <ApplicationManifest>app.manifest</ApplicationManifest>
+  </PropertyGroup>
+  <ItemGroup>
+    <ProjectReference Include="../App.Core/App.Core.csproj" />
+    <ProjectReference Include="../App.Worker/App.Worker.csproj" ReferenceOutputAssembly="false" />
+    <Resource Include="Assets/PdfEditor-256.png" />
+    <Content Include="../tools/advanced-python-3.14.8/**/*" Exclude="../tools/advanced-python-3.14.8/**/__pycache__/**;../tools/advanced-python-3.14.8/**/*.pyc">
+      <Link>advanced/%(RecursiveDir)%(Filename)%(Extension)</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Include="../App.Advanced/*.py">
+      <Link>advanced/%(Filename)%(Extension)</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+  </ItemGroup>
+  <Target Name="CopyWorker" AfterTargets="Build">
+    <ItemGroup><WorkerFiles Include="../App.Worker/bin/$(Configuration)/net10.0/**/*" /></ItemGroup>
+    <Copy SourceFiles="@(WorkerFiles)" DestinationFiles="@(WorkerFiles->'$(OutDir)worker/%(RecursiveDir)%(Filename)%(Extension)')" SkipUnchangedFiles="true" />
+  </Target>
+</Project>

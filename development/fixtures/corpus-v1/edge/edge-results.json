@@ -1,0 +1,31 @@
+{
+  "checks": [
+    "ligature: ligature and Unicode mappings intact",
+    "missing-map: intentionally absent ToUnicode preserved; editing unsafe without mapping checks",
+    "scan: readable pixels stored as image; no hidden text",
+    "public: upstream PDFium fixture text retained",
+    "ligature-saved: ligature and Unicode mappings intact",
+    "missing-map-saved: intentionally absent ToUnicode preserved; editing unsafe without mapping checks",
+    "scan-saved: readable pixels stored as image; no hidden text",
+    "public-saved: upstream PDFium fixture text retained"
+  ],
+  "fixtureSha256": {
+    "ligature-mapped-saved.pdf": "948e8944f99a4e2eae072358e7adcd86c7dd779819b804e0a8195f092964e61f",
+    "ligature-mapped.pdf": "cbb140c02f026250f4c4b10dd2e96dad003ab0291c4e1add287ec084b8e10584",
+    "missing-unicode-map-saved.pdf": "70f07e375bd5e04ebd2c80ca8885ece650a19cacec6f613f686b32ad64e1c2c3",
+    "missing-unicode-map.pdf": "06c9c411c8c68e0e395bc7bae16cdf30fba793dc6eea21258d92442147b0daf5",
+    "public-hello-world-saved.pdf": "c254ad300c89eecbe6d11b7b07f1728ea4e8dc0c03ccff8a31b60f07242652cb",
+    "public-hello-world.pdf": "1e06a6e12329f0c3760680a70baea126e040e66e0bf34d3b14a71863096ee1e3",
+    "scan-real-text-saved.pdf": "697a41ceeceb8893bdbd67be99dcb9fab5e1ab267f26edf05fd3301155e9ac07",
+    "scan-real-text.pdf": "ae409a18000027a12bbccc652c9bba4870edd64255c3c029601651057e840ffa",
+    "signed-saved.pdf": "2441be0946fa0321be8df58e9b18f3b988a4b36451ddc86486f26af6838957dd",
+    "signed-tampered.pdf": "9e48da5b30f701ae4676026ab1414a9e34add58268601c99d5be45437e53b3dd",
+    "signed.pdf": "4d4a64f59cf990f2e4058d8a9865724c0215cc9715c427d089b37fb27ab218fb"
+  },
+  "status": "PASSED",
+  "pending": [
+    "OCR accuracy not tested",
+    "general nested editing unresolved",
+    "full P0 acceptance coverage"
+  ]
+}

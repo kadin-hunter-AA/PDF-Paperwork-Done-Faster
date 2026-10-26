@@ -1,0 +1,1 @@
+<Solution><Project Path="App.Core/App.Core.csproj"/><Project Path="App.Pdfium/App.Pdfium.csproj"/><Project Path="App.Worker/App.Worker.csproj"/><Project Path="App.Desktop/App.Desktop.csproj"/><Project Path="App.Tests/App.Tests.csproj"/><Project Path="App.UiTests/App.UiTests.csproj"/></Solution>
