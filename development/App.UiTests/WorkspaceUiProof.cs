@@ -140,14 +140,22 @@ static class WorkspaceUiProof
             // ---- Panel shortcuts ----
             var navigation = Control<ToggleButton>(owner, "NavigationToggle");
             var side = Control<ToggleButton>(owner, "PropertiesToggle");
-            ShellCommands.ToggleNavigation.Execute(null, owner); await Idle(owner);
-            Check(navigation.IsChecked == false && Control<Border>(owner, "NavigationPanel").Visibility != Visibility.Visible, "Ctrl+B hides the page sidebar");
-            ShellCommands.ToggleNavigation.Execute(null, owner); await Idle(owner);
-            Check(navigation.IsChecked == true && Control<Border>(owner, "NavigationPanel").Visibility == Visibility.Visible, "Ctrl+B shows it again");
-            ShellCommands.ToggleSidePanel.Execute(null, owner); await Idle(owner);
-            Check(side.IsChecked == false && Control<Border>(owner, "PropertiesPanel").Visibility != Visibility.Visible, "Ctrl+Shift+B hides the side panel");
-            ShellCommands.ToggleSidePanel.Execute(null, owner); await Idle(owner);
-            Check(side.IsChecked == true, "Ctrl+Shift+B shows it again");
+            // A narrow screen hides the side panel on its own, so each shortcut is checked from the panel's current state.
+            foreach (var (command, toggle, panel, name) in new[]
+            {
+                (ShellCommands.ToggleNavigation, navigation, "NavigationPanel", "Ctrl+B page sidebar"),
+                (ShellCommands.ToggleSidePanel, side, "PropertiesPanel", "Ctrl+Shift+B side panel")
+            })
+            {
+                var shown = toggle.IsChecked == true;
+                for (var press = 0; press < 2; press++)
+                {
+                    command.Execute(null, owner); await Idle(owner);
+                    shown = !shown;
+                    Check(toggle.IsChecked == shown && (Control<Border>(owner, panel).Visibility == Visibility.Visible) == shown,
+                        $"{name} {(shown ? "shows" : "hides")} the panel (press {press + 1})");
+                }
+            }
 
             // ---- Find across a long document ----
             await owner.RunUiAsync(() => owner.OpenPathAsync(large), "Opening 500-page fixture…");
